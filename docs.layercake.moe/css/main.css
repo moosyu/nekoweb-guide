@@ -288,7 +288,7 @@ main {
 
 
 @media only screen and (max-width: 500px) {   
-
+#togglenav { position: static;}
 .show { display: block;}
 
   :root {
