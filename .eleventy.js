@@ -3,7 +3,7 @@ const markdownIt = require("markdown-it");
 const markdownItAttrs = require("markdown-it-attrs");
 
 module.exports = function(eleventyConfig) {
- 
+
 // i like my 11ty being nice to me
   eleventyConfig.on("beforeBuild", () => {
     console.log("⏳ Build starting...");
@@ -13,7 +13,7 @@ module.exports = function(eleventyConfig) {
   ///////////////////////////////// MARKDOWN CONFIG /////////////////////////////////
   const md = markdownIt({
     html: true, // allows html in md files
-    breaks: true, 
+    breaks: true,
     linkify: false, // turns pasted links into clickable links
     typographer: true // changes stuff like -- to –
   }).use(markdownItAttrs); // adds markdown attributes plugin used below to adjust shit
@@ -54,14 +54,14 @@ module.exports = function(eleventyConfig) {
 });
 
 
-  // stop the default behaviour of foo.html being turned into foo/index.html 
+  // stop the default behaviour of foo.html being turned into foo/index.html
   // however can go back to the original behaviour if you have permalinkStyle: default in frontmatter
   eleventyConfig.addGlobalData("eleventyComputed", {
     permalink: (data) => {
       if (data?.permalinkStyle === "default") return;
       return `${data.page.filePathStem}.html`;
     }
-  });  
+  });
 
   // copy over site assets to public folder
   eleventyConfig.addPassthroughCopy("./src/assets/");

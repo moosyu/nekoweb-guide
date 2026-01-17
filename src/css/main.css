@@ -91,7 +91,7 @@ p {
 
 h1, h2, h3, h4, h5, h6,
 .fakeh1, .fakeh2, .fakeh3 {
-  text-wrap: balance;  
+  text-wrap: balance;
   font-family: "Fredoka", sans-serif /* add own title font */;
   font-weight: 600;
   text-shadow: none;
@@ -102,7 +102,7 @@ h1, h2, h3, h4, h5, h6,
 
 
 .tippy-box[data-theme~='nwd'] {
-  background-color: var(--background-dark);
+  background-color: var(--light-red);
   color: var(--foreground);
   text-align: center;
   font-size: inherit;
@@ -112,11 +112,11 @@ h1, h2, h3, h4, h5, h6,
   filter: drop-shadow(0px -1px 0 var(--foreground)) drop-shadow(1px 0px 0 var(--foreground))
   drop-shadow(0px 1px 0 var(--foreground)) drop-shadow(-1px 0px 0 var(--foreground))   
   drop-shadow(3px 3px 0 var(--button-hover-dark));
-  position:relative;  
+  position:relative;
 }
 
 .tippy-box[data-theme~='nwd'] > .tippy-arrow {
-  color: var(--background-dark);
+  color: var(--light-red);
 }
 
 .container {
@@ -173,7 +173,7 @@ header .lucide {
 nav {
   min-width:var(--navaside);  
   z-index: 10;
-  background: #FFECD6;
+  background: var(--creamish);
   height: calc(100dvh - var(--header-height));
   overflow-y:auto;
 }
@@ -271,13 +271,20 @@ pre {
     color: var(--cookie)
 }
 
-@media only screen and (max-width: 920px) {   
+/* makes standalone code blocks stand out more but doesnt effect those inside the code chunks */
+code:not(pre code) {
+  background: var(--creamish);
+  padding: 0 4px;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 920px) {
 #togglenav { display:none}
 #togglenav.show { display: block;}
 
   header button {
     display: block;
-  } 
+  }
 
   h1 {
     font-size:2rem;
@@ -285,11 +292,11 @@ pre {
 
   .kuro { width: 40px;
   min-width: 40px }
-  header .lucide { 
+  header .lucide {
     width: 25px;
     min-width: 25px; }
 
-    
+
   .main-pad { padding:10px;}
 }
 
@@ -305,7 +312,7 @@ pre {
   color: inherit;
 }
 
-@media only screen and (max-width: 500px) {   
+@media only screen and (max-width: 500px) {
 #togglenav { position: static;}
 .show { display: block;}
 
@@ -339,5 +346,4 @@ pre {
   bottom: 0;
 z-index: 1000;
 }
-
 }

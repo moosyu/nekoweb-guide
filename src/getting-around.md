@@ -10,8 +10,8 @@ description: The Unofficial Nekoweb Documentaton
 Nekoweb, especially for those who haven't used a website host before, may be hard to get around, this will cover a basic guide to how to navigate the website and a bunch of information on general Nekoweb features. Please note that Nekoweb is under active development, and depending on when you have made your account and if you have migrated it to the new routing system (released on 26th July, 2025) there may be some issues. This guide focuses on newer accounts and assumes migration to the current routing system.
 
 ## The Dashboard
-When creating a website, there are three files you may find inside of your dashboard, these are 
-prettier.json, a cursor image and a folder which follows the structure USERNAME.nekoweb.org. 
+When creating a website, there are three files you may find inside of your dashboard, these are
+prettier.json, a cursor image and a folder which follows the structure USERNAME.nekoweb.org.
 
 **prettier.json** is the configuration for the format button and is what makes it work inside the Nekoweb editor work. below is the default configuration for it:
 ```
@@ -38,12 +38,12 @@ Inside your website folder by default you will find three more files, these are 
 - any custom fonts (aka @font-face)
 - animations using @keyframes
 
-The basic elements.css file can be found below: 
+The basic elements.css file can be found below:
 ```
-/* 
+/*
     Don't use this file to edit your site style! Create a different CSS file for that.
     This file defines how custom elements (like sitebox) will look like.
-    Setting CSS that breaks main nekoweb site on purpose is prohibited and may result in ban and site deletion! 
+    Setting CSS that breaks main nekoweb site on purpose is prohibited and may result in ban and site deletion!
 */
 
 /* Must start with ".site-box". Change how your website will appear on main nekoweb site: https://nekoweb.org/assets/siteboxes.png */
@@ -108,7 +108,7 @@ the top and left can be used to adjust the placement of the image.
 
 Additionally, there is [an unofficial testing space for your elements.css configiration hosted by jb](https://jbc.lol/utils/nekobox/), while it doesn't test to check for the image limits (at least as of writing), it is good resource to adjust how your sitebox and postbox look.
 
-**index.html** is the main page of your website, when you make the homepage of your site, all the code goes into this file. On nekoweb, all index.html pages are initially created with this structure: 
+**index.html** is the main page of your website, when you make the homepage of your site, all the code goes into this file. On nekoweb, all index.html pages are initially created with this structure:
 ```
 <!DOCTYPE html>
 <html lang="en">
