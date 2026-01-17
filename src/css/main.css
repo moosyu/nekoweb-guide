@@ -102,8 +102,8 @@ h1, h2, h3, h4, h5, h6,
 
 
 .tippy-box[data-theme~='nwd'] {
-  background-color: var(--light-red);
-  color: var(--foreground);
+  background-color: var(--darkbrown);
+  color: #fff9e6;
   text-align: center;
   font-size: inherit;
   border-radius: 0;
@@ -116,9 +116,15 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .tippy-box[data-theme~='nwd'] > .tippy-arrow {
-  color: var(--light-red);
+  color: var(--darkbrown);
 }
 
+.help {
+  cursor: help;
+  font-weight: bold;
+  color:var(--light-red);
+  text-decoration: wavy;
+}
 .container {
   width: 100%; 
   margin:0 auto;

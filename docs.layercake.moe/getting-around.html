@@ -96,7 +96,7 @@ function myFunction() {
         <li><a href="/">Resposniveness</a></li>
         <li><a href="/eleventy">Eleventy</a></li>
         <br>
-        <li><a href="/">Credits</a></li>
+        <li><a href="/credits">Credits</a></li>
         <li><a href="https://layercake.moe/">Creator</a></li>
     </ul>
 </nav>
@@ -105,7 +105,7 @@ function myFunction() {
 </div>
 <main id="togglemain" class="main-pad">
   <h1>Getting started - Exploring Nekoweb Dashboard and Settings</h1>
-<p><i>Last updated: <span class="lastupd">January 17, 2026</span></i></p>
+<p><i>Last updated: <span class="lastupd">November 16, 2025</span></i></p>
 <p>Nekoweb, especially for those who haven't used a website host before, may be hard to get around, this will cover a basic guide to how to navigate the website and a bunch of information on general Nekoweb features. Please note that Nekoweb is under active development, and depending on when you have made your account and if you have migrated it to the new routing system (released on 26th July, 2025) there may be some issues. This guide focuses on newer accounts and assumes migration to the current routing system.</p>
 <h2>The Dashboard</h2>
 <p>When creating a website, there are three files you may find inside of your dashboard, these are<br>
@@ -177,7 +177,7 @@ prettier.json, a cursor image and a folder which follows the structure USERNAME.
     margin-bottom: 0px;
 }
 </code></pre>
-<p>As mentioned in the file itself, changing aspects in the sitebox must start with using the class .site-box and all aspects changing the postbox must start using the class .post-box. For a guide on how to set up an rss feed and thus utilise the postbox, you can see <a href="https://help.joo.sh/rss">Joosh's RSS Tutorial</a>.</p>
+<p>As mentioned in the file itself, changing aspects in the sitebox must start with using the class .site-box and all aspects changing the postbox must start using the class .post-box. For a guide on how to set up an rss feed and thus utilise the postbox, you can see <a href="https://help.joo.sh/rss">Joosh's RSS Tutorial</a>. It is also important to note the difference in '.follow' and the follow button on your sitebox, edited with '.site-box .follow', .follow is used specifically for the follow iframe (implemented with <code>&lt;iframe src=&quot;https://nekoweb.org/frame/follow&quot; frameborder=&quot;0&quot; width=&quot;170&quot; height=&quot;28&quot;&gt;&lt;/iframe&gt;</code>), this is a customisable iframe that adds the follow button to your site. Meanwhile, .site-box .follow is used to customise the follow symbol on your sitebox, this is originally shown as the [+] symbol. There is a second alternative method to add a follow link to your site, as well. This is by using an a href link to 'https://nekoweb.org/follow/username.nekoweb.org', which will redirect you to a page asking if you would like to follow that user. If you use a custom domain, you should use that in place of the nekoweb subdomain.</p>
 <p>Below are some quick common codes that are frequently asked for to hide sections of the sitebox.</p>
 <p>Hiding the website screenshot on sitebox:</p>
 <pre><code>.site-box .sitefeature {
@@ -193,6 +193,19 @@ padding: 0px;
 }
 </code></pre>
 <p>the top and left can be used to adjust the placement of the image.</p>
+<p>Adding extra images to your site-box can be done with the use of ::before and ::after in css, below is an example of how I added the logo to the sitebox for my main site:</p>
+<pre><code>.site-box::after {
+    content: url(image url);
+    position: absolute;
+    background-size: contain;
+    top: -30px;
+    right: 160px;
+    width: 10px;
+    height: 10px;
+    z-index: 1;
+}
+</code></pre>
+<img src="/assets/getting-started/added-image-sitebox.png" alt="a screennshot of my sitebox, in the top right corner it has a logo added onto it">
 <p>Additionally, there is <a href="https://jbc.lol/utils/nekobox/">an unofficial testing space for your elements.css configiration hosted by jb</a>, while it doesn't test to check for the image limits (at least as of writing), it is good resource to adjust how your sitebox and postbox look.</p>
 <p><b>index.html</b> is the main page of your website, when you make the homepage of your site, all the code goes into this file. On nekoweb, all index.html pages are initially created with this structure:</p>
 <pre><code>&lt;!DOCTYPE html&gt;

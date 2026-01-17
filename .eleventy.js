@@ -76,8 +76,6 @@ module.exports = function(eleventyConfig) {
 
   // blocked pages I do not want to appear in sitemap
   const blockedPages = [
-    "/random",
-    "/home",
     "/sitemap"
   ];
 
@@ -89,7 +87,7 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: "src",
-      output: "docs.layercake.moe",
+      output: "docs.nekoweb.org",
     },
     markdownTemplateEngine: "njk", // basically lets me use njk template stuff in markdown
   };
