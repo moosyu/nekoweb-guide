@@ -608,7 +608,25 @@ package-lock.json
 
 This will prevent these files from being added to your repository when you upload as they'd just be unnecessary bloat. If you'd like to maintain your site at a specific version of your packages however, you may want to remove package-lock.json from your .gitignore, but for most I'd just leave it like that. Next copy and paste over all the files from your Eleventy project's current directory into your newly cloned and almost empty repository's folder on your computer, this will be where you work on your site from now on. If you go into Github Desktop you'll likely see a huge list of changed files, that means you're doing this correctly.
 
-Next create a new folder inside your Github repository's folder on your computer and name it .github. Inside the .github folder create another folder, call this one workflows. Finally inside workflows create a new file, it can have any name as long as it has the .yml file extension. I've named mine build.yml. You can name the YAML file anything but the folders have to be named exactly. Inside of your new YAML file add this:
+Next create a new folder inside your Github repository's folder on your computer and name it .github. Inside the .github folder create another folder, call this one workflows. Finally inside workflows create a new file, it can have any name as long as it has the .yml file extension. I've named mine build.yml. You can name the YAML file anything but the folders have to be named exactly.
+
+The file structure of your repository should look something like:
+
+```
+.
+├── .github/
+│   └── workflows/
+│       └── build.yml
+├── _site
+├── node_modules
+├── src
+├── .eleventy.js
+├── .gitignore
+├── package.json
+└── package-lock.json
+```
+
+Inside of your new YAML file add this:
 
 {% raw %}
 ```yml
@@ -647,4 +665,4 @@ If your master branch isn't called main (which it probably will be if you follow
 
 However, before creating your first commit to your Github repository its important to note that this Github workflow first deletes everything inside the folder it's uploading into. This means if you have something like an elements.css file you'd like to keep, you're going to want to add it somewhere in your Eleventy site and add a passthrough copy in your .eleventy.js's export function to send it to the output. I just put my elements.css inside of the already made CSS folder so it's passed through with the rest of the CSS files.
 
-Now, still assuming you're using Github Desktop, inside the textbox in the bottom left saying "Summary required" enter a short summary of the changes you made (or whatever you want, that gets messy fast though if you look through your version history). Now you can add a further description or just click the blue commit button. At the top you'll see something that says "Publish branch" with a one and a little up arrow beside it. Click that (or use the keybind CTRL + P) and you'll have made your first Github commit to your site! Within the next minute or so your Nekoweb site will have been updated if you've done this correctly. In the future the "Publish branch" button will say "Push origin" instead but that's just about the only difference to this process. Now when you edit your site from inside the repository's folder on your computer, Git will see these changes and you'll be able to commit them.
+Now, still assuming you're using Github Desktop, inside the textbox in the bottom left saying "Summary required" enter a short summary of the changes you made (or whatever you want, that gets messy fast though if you look through your version history). Now you can add a further description or just click the blue commit button. At the top you'll see something that says "Publish branch" with a one and a little up arrow beside it. Click that and you'll have made your first Github commit to your site! Within the next minute or so your Nekoweb site will have been updated if you've done this correctly. In the future the "Publish branch" button will say "Push origin" instead but that's just about the only difference to this process. Now when you edit your site from inside the repository's folder on your computer, Git will see these changes and you'll be able to commit them.

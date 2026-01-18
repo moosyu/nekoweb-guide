@@ -528,7 +528,21 @@ node_modules/
 package-lock.json
 </code></pre>
 <p>This will prevent these files from being added to your repository when you upload as they'd just be unnecessary bloat. If you'd like to maintain your site at a specific version of your packages however, you may want to remove package-lock.json from your .gitignore, but for most I'd just leave it like that. Next copy and paste over all the files from your Eleventy project's current directory into your newly cloned and almost empty repository's folder on your computer, this will be where you work on your site from now on. If you go into Github Desktop you'll likely see a huge list of changed files, that means you're doing this correctly.</p>
-<p>Next create a new folder inside your Github repository's folder on your computer and name it .github. Inside the .github folder create another folder, call this one workflows. Finally inside workflows create a new file, it can have any name as long as it has the .yml file extension. I've named mine build.yml. You can name the YAML file anything but the folders have to be named exactly. Inside of your new YAML file add this:</p>
+<p>Next create a new folder inside your Github repository's folder on your computer and name it .github. Inside the .github folder create another folder, call this one workflows. Finally inside workflows create a new file, it can have any name as long as it has the .yml file extension. I've named mine build.yml. You can name the YAML file anything but the folders have to be named exactly.</p>
+<p>The file structure of your repository should look something like:</p>
+<pre><code>.
+├── .github/
+│   └── workflows/
+│       └── build.yml
+├── _site
+├── node_modules
+├── src
+├── .eleventy.js
+├── .gitignore
+├── package.json
+└── package-lock.json
+</code></pre>
+<p>Inside of your new YAML file add this:</p>
 <pre><code class="language-yml">name: Build and Deploy to Nekoweb
 
 on:
