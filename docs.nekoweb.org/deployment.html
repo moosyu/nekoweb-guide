@@ -112,16 +112,16 @@ function myFunction() {
   <div class="mobileafternav">.</div>
 </div>
 <main id="togglemain" class="main-pad">
-  <h2>Deploying to Nekoweb</h2>
+  <h2 id="deploying-to-nekoweb" tabindex="-1">Deploying to Nekoweb</h2>
 <p><i>Last updated: <span class="lastupd">January 19, 2026</span></i><br>
 <i>Authors: <a class="lastupd" href="https://jbc.lol/">JB</a> and <a class="lastupd" href="https://moosyu.github.io/">Moosyu</a></i></p>
-<h2>Disclaimer</h2>
+<h2 id="disclaimer" tabindex="-1">Disclaimer</h2>
 <p>We will try to deploy the site you created on the <a href="/eleventy">Eleventy guide</a> as an example, but you can do this on all other SSGs/frameworks with zero or some slight modification to the guide.</p>
 <p>Some SSGs or frameworks (like Astro and Svelte) might have their own deployment libraries that is more integrated to the framework itself. Check your framework's integrations/libraries repository first and use that instead of following this, as it can have more features than the things shown here.</p>
-<h2>Overview</h2>
+<h2 id="overview" tabindex="-1">Overview</h2>
 <p>If you've been editing your site locally for a while, you may want to know how to upload it directly after building it. This is especially useful if you have switched to a SSG for example but are still manually uploading your files to the Nekoweb dashboard. This guide will outline automating your deployment workflow so you can either run a command or push it to your GitHub repository, then using your Github repository to automaticallly deploy your site to Nekoweb.</p>
 <p>This guide consists of 2 seperate ways to deploy your Nekoweb site, <a href="#using-deploy2nekoweb">using deploy2nekoweb</a>, and <a href="#creating-your-own-using-the-nekoweb-api-library">creating your own using the Nekoweb API library</a>.</p>
-<h2>Prerequisites</h2>
+<h2 id="prerequisites" tabindex="-1">Prerequisites</h2>
 <p>This are the things you need for both methods:</p>
 <ul>
 <li>A Nekoweb account</li>
@@ -130,7 +130,7 @@ function myFunction() {
 <li>The folder name of your site</li>
 </ul>
 <p>Each way has it's own prerequisites you need to follow alongside the above.</p>
-<h2>Using deploy2nekoweb</h2>
+<h2 id="using-deploy2nekoweb" tabindex="-1">Using deploy2nekoweb</h2>
 <p>Github is a free cloud-based <span class="help" title="Git is a popular version control system used mainly to manage different versions of the same code so developers can collaborate">Git</span> server. Even if you have never use Github's collaboration features I'd recommend it just for its ability to back up your code and view your code's version history, though it should be noted that Github isn't the only Git server out there. Nekoweb even has its own git server, however I have only used Github so I have no way of knowing if the following deployment methods would work on the alternative Git servers. Github has a feature called Github Actions, which, in conjunction with <a href="https://deploy.nekoweb.org/">deploy2nekoweb</a> allows Github to be a kind of middle-man between you and Nekoweb, building your project for you and uploading it to Nekoweb. This means you no longer have to deal with zipping your project up, you can just commit your changes and it will be updated automatically.</p>
 <p>First create a Github account and create a repository for your site. I highly recommend then downloading <a href="https://desktop.github.com/">Github Desktop</a>, though you could always just download only <a href="https://git-scm.com/">Git</a>. Github Desktop lacks the control of using Git but it's very easy to use and will let you get your bearings a little. Now, assuming you chose Github Desktop, log into your Github account through it and clone your empty repository you created earlier by pressing the &quot;Add&quot; dropdown. Go to your new repository's location in your file manager by pressing &quot;Show in Explorer&quot; in Github Desktop. Inside this folder a new file named .gitignore (no file extension, just that). Inside .gitignore you're going to want to add the following:</p>
 <pre><code>_site/
@@ -185,9 +185,9 @@ jobs:
 <p>If your master branch isn't called main (which it probably will be if you followed this guide word for word) then you need to change that. Otherwise, you only need to fill in the last three lines accordingly. For nekoweb-domain it's whatever you domain is, if you have a custom domain write that, if not use your nekoweb.org domain. For nekoweb-username it's just your username on Nekoweb whether you have a custom domain or not. The directory is whatever folder you set as your output in your .eleventy.js, for me it's _site. Now, go into Github, go to your repository, click &quot;Settings&quot;, look at the settings sidebar and click &quot;Secrets and variables&quot;, click &quot;Actions&quot; and then create a &quot;New repository secret&quot;. Set this secret's name as NEKOWEB_API_KEY, and put the API key you got from the Nekoweb API page.</p>
 <p>However, before creating your first commit to your Github repository its important to note that this Github workflow first deletes everything inside the folder it's uploading into. This means if you have something like an elements.css file you'd like to keep, you're going to want to add it somewhere in your Eleventy site and add a passthrough copy in your .eleventy.js's export function to send it to the output. I just put my elements.css inside of the already made CSS folder so it's passed through with the rest of the CSS files.</p>
 <p>Now, still assuming you're using Github Desktop, inside the textbox in the bottom left saying &quot;Summary required&quot; enter a short summary of the changes you made (or whatever you want, that gets messy fast though if you look through your version history). Now you can add a further description or just click the blue commit button. At the top you'll see something that says &quot;Publish branch&quot; with a one and a little up arrow beside it. Click that and you'll have made your first Github commit to your site! Within the next minute or so your Nekoweb site will have been updated if you've done this correctly. In the future the &quot;Publish branch&quot; button will say &quot;Push origin&quot; instead but that's just about the only difference to this process. Now when you edit your site from inside the repository's folder on your computer, Git will see these changes and you'll be able to commit them.</p>
-<h2>Creating your own using the Nekoweb API library</h2>
+<h2 id="creating-your-own-using-the-nekoweb-api-library" tabindex="-1">Creating your own using the Nekoweb API library</h2>
 <p>If you don't want to dabble with Git, you can interface directly to the Nekoweb API and upload using that. Note that this requires some knowledge of JavaScript, but this guide will give you a code example to copy and paste on.</p>
-<h3>Setting up</h3>
+<h3 id="setting-up" tabindex="-1">Setting up</h3>
 <p>To start, we need a couple libraries, one to interface with the Nekoweb API, and one to zip up our website. We can install it using <code>npm</code>:</p>
 <pre><code>&gt; npm install @indiefellas/nekoweb-api adm-zip @types/adm-zip
 </code></pre>

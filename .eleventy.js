@@ -1,5 +1,6 @@
 const nunjucks = require("nunjucks");
 const markdownIt = require("markdown-it");
+const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttrs = require("markdown-it-attrs");
 
 module.exports = function(eleventyConfig) {
@@ -16,7 +17,8 @@ module.exports = function(eleventyConfig) {
     breaks: true,
     linkify: false, // turns pasted links into clickable links
     typographer: true // changes stuff like -- to –
-  }).use(markdownItAttrs); // adds markdown attributes plugin used below to adjust shit
+  }).use(markdownItAttrs) // adds markdown attributes plugin used below to adjust shit
+  .use(markdownItAnchor) // adds anchor attributes to headers
 
 // adjust markdown so *this* makes <i>this</i> so its not emphasised on screenreaders but only visually italics
   md.renderer.rules.em_open = () => '<i>';

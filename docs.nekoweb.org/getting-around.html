@@ -112,10 +112,10 @@ function myFunction() {
   <div class="mobileafternav">.</div>
 </div>
 <main id="togglemain" class="main-pad">
-  <h1>Getting started - Exploring Nekoweb Dashboard and Settings</h1>
+  <h1 id="getting-started---exploring-nekoweb-dashboard-and-settings" tabindex="-1">Getting started - Exploring Nekoweb Dashboard and Settings</h1>
 <p><i>Last updated: <span class="lastupd">January 17, 2026</span></i></p>
 <p>Nekoweb, especially for those who haven't used a website host before, may be hard to get around, this will cover a basic guide to how to navigate the website and a bunch of information on general Nekoweb features. Please note that Nekoweb is under active development, and depending on when you have made your account and if you have migrated it to the new routing system (released on 26th July, 2025) there may be some issues. This guide focuses on newer accounts and assumes migration to the current routing system.</p>
-<h2>The Dashboard</h2>
+<h2 id="the-dashboard" tabindex="-1">The Dashboard</h2>
 <p>When creating a website, there are three files you may find inside of your dashboard, these are<br>
 prettier.json, a cursor image and a folder which follows the structure USERNAME.nekoweb.org.</p>
 <p><b>prettier.json</b> is the configuration for the format button and is what makes it work inside the Nekoweb editor work. below is the default configuration for it:</p>
@@ -287,7 +287,7 @@ the a-z button allows you to change how your files are sorted. you can choose be
 <img src="/assets/getting-started/confirmdelete.png" alt="a tickbox, asking if you want to cofirm any deletions made on your website">
 this allows you to check if you want to delete a file or not, to save you from accidentally deleting something. with this enabled, when you attempt to delete a file an alert like below will show
 <img src="/assets/getting-started/deleteprompt.png" alt="a popup, it says: 'Are you sure you want to delete prettier.json?'">
-<h2>General Settings</h2>
+<h2 id="general-settings" tabindex="-1">General Settings</h2>
 <p>Nekoweb settings may be a little difficult to navigate at first, but like above I'll detail every aspect of what are within the settings and point out some options you can toggle.</p>
 <img src="/assets/getting-started/sitelist.png" alt="a screenshot that shows the title 'sites', under it is a table, under Status it has Main. Under domain it has username.nekoweb.org. Under title it has 'My nekoweb site', under folder it has '/username.nekoweb.org', it also shows statistics, it has 0 followers, 0 views and 1 update. at the very right hand side is a settings link that takes you to the site settings.">
 <b>the sites list</b> - this is the basic information for each site you own, it covers the status (if the page is your main site or an active site) as well as other aspects like your domain name, your website title (which can be changed in your index html), the folder the site is held in as well as statistics like your followers, views and updates. Additionally each site has it's own settings menu, which we'll dive into later.<br><br>
@@ -299,31 +299,31 @@ this allows you to check if you want to delete a file or not, to save you from a
     <li><b>Multiplayer cursors</b> - This is seeing other people's cursors around Nekoweb and the chatting feature.</li>
     <li><b>Sitebox styles</b> - This is the custom styles in elements.css, turning this off reduces them all to default.</li>
 </ul>
-<h2>Website Specific Settings</h2>
+<h2 id="website-specific-settings" tabindex="-1">Website Specific Settings</h2>
 <p>These are accessed under the general settings in the site section, beside each site when you click settings it will take you to this page.</p>
-<h3>site settings tab</h3>
+<h3 id="site-settings-tab" tabindex="-1">site settings tab</h3>
 <p><b>Enable Nice Links</b> - As stated, this will make pages like <b>/page.html</b> show as <b>/page</b> (like Neocities). Keep in mind that turning this on shouldn't break anything, but turning this back off will most likely break your links if you already use links without .html and will hurt your site in Google (for pages that were already indexed without .html), so if you enable this it's not recommended to turn it off, unless you just wanted to experiment for a bit.</p>
 <p><b>Show this site in Explore and Follows pages.</b> - Allows you to toggle if people can see your site on these respective pages.</p>
 <p><b>Show this site's RSS posts in global feed.</b> - Allows you to toggle if people can see your posts in the Nekoweb Feed page, please also note that if you have issues being added to the feed there are some internal criteria, such as a minimum follower count, needed to be visible on the global feed.</p>
 <p><b>This site contains NSFW content.</b> - For you to toggle if your site has NSFW content, please make sure to label your website accordingly! If you have this toggled, someone from the UK for example will only see the text &quot;This site is not available in your country due to UK Online Safety Act.&quot;.</p>
-<h3>*domain settings tab</h3>
+<h3 id="*domain-settings-tab" tabindex="-1">*domain settings tab</h3>
 <p>This is largely a donator only feature, It mainly shows your domain status and allows you to change your website domain through an input box at the bottom. If you are looking for a guide or struggling adding a custom domain, I highly recommend <a href="https://help.joo.sh/domains">Joosh's Custom Domain Tutorial</a>!</p>
-<h3>tag settings</h3>
+<h3 id="tag-settings" tabindex="-1">tag settings</h3>
 <p>this is where you can add tags for your site, these are used to find your site on the explore page, you can add up to 10 tags. Below is an example screenshot with ten tags added:<br>
 <img src="/assets/getting-started/tags.png" alt="an image showing what it looks like with ten tags added to your tag list, they are all in a list with a column beside them to 'delete' them from your list. below the list is an input field where you can add tags."></p>
-<h3>RSS settings</h3>
+<h3 id="rss-settings" tabindex="-1">RSS settings</h3>
 <p>This primarily manages how your RSS feed is shown on Nekoweb's Global Feed. Nekoweb automatically checks your file for updates to display on the feed.</p>
 <img src="/assets/getting-started/manageposts.png" alt="a button that says 'manage posts'">
 The manage posts button is used to show your feed posts, **to remove a post from the feed, you need to use this manage posts feature rather than delete it from your rss file**, this is as it cache's old posts displayed on nekoweb's feed. The manage post feed looks like the screenshot below:
 <img src="/assets/getting-started/rssmanageposteg.png" alt="a screenshot of the manage posts page, it has the title 'manage posts for layercake.moe' and underneath is each rss post, it shows the GUID, the title the date and an option to delete the post">
 <img src="/assets/getting-started/setrss.png" alt="a screenshot that shows a section where you can set your rss feed through the input field">
 This is the input file where you set your rss feed, following the routing migration, you need to make sure to list your **username.nekoweb.org** file when linking your RSS feed file.
-<h3>*Headers settings</h3>
+<h3 id="*headers-settings" tabindex="-1">*Headers settings</h3>
 <p>The headers tab used for custom http headers is a donator perk. This is a topic I am not as knowledgeable about but I will try my best to explain. Custom HTTP headers are like extra snippets of information for your website that helps your website communicate with other clients or servers better. On this page you can add headers such as content security policy to your website using the add header section. The screenshot below shows what the header page looks like, with an example added header:<br>
 <img src="/assets/getting-started/headers.png" alt="an image showing the headers page, it has an added html header which is displayed like a table, showing a section for the header, value and folder. beside it is a button to remove each header added. below the table is a section where you can add a new header"></p>
-<h3>Followers</h3>
+<h3 id="followers" tabindex="-1">Followers</h3>
 <p>This is less a setting and more shows every website that follows you, in a similar display to the explore page.</p>
-<h3>Stats</h3>
+<h3 id="stats" tabindex="-1">Stats</h3>
 <p>These show your website statistics, there are three graphs: Visits, Followers and Updates. As a free user, you can only see your statistics for the month, if you are a donator (Cute cat tier) you can see your statistics for the year and if you are a donator (Neko tier) you can see the statistics for all time.</p>
 
 </main>
