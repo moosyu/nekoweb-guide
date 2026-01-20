@@ -1,5 +1,5 @@
 ---
-title: accessibility
+title: Accessibility
 updated: 2025-11-16
 layout: /main.njk
 description: The Unofficial Nekoweb Documentaton

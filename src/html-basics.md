@@ -1,5 +1,5 @@
 ---
-title: html basics
+title: HTML Basics
 updated: 2025-11-16
 layout: /main.njk
 description: The Unofficial Nekoweb Documentaton

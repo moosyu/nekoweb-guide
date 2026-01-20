@@ -1,5 +1,5 @@
 ---
-title: getting around
+title: Getting Around
 updated: 2026-01-17
 layout: /main.njk
 description: The Unofficial Nekoweb Documentaton

@@ -1,5 +1,5 @@
 ---
-title: home
+title: Home
 layout: /main.njk
 description: The Unofficial Nekoweb Documentaton
 ---
