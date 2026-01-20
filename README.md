@@ -6,3 +6,15 @@
 Just a silly little thing I'm working on that will have a bunch of basic topics to help both you and many others with your humble nekoweb beginnings and to refer to during your webdev journey!
 
 <a href="https://docs.nekoweb.org/">https://docs.nekoweb.org/</a>
+
+
+## Development  ฅ^•ﻌ•^ฅ
+First, install dependencies:
+```bash
+$ npm install # or bun, pnpm, deno, etc
+```
+
+Then, run 11ty:
+```bash
+$ npm run start
+```

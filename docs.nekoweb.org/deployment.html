@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--
+
+MMMMMMMMMMMMMMMMMNx' .lNMMMMMMMMMMMMMMWk, .oNMMMMM
+MMMMMMMMMMMMMMMMXl.   .kWMMMMMMMMMMMMXo.   .kWMMMM
+MMMMMMMMMMMMMMW0;      ;KMMMMMMMMMMWK:      :XMMMM
+MMMMMMMMMMMMMNx'        lKNMMMMMMMWk,       .oNMMM
+MMMMMMMMMMMMXo.         .,cddxkkOOo.         .OMMM
+MMMMMMMMMMW0:                                 :XMM
+MMMMMMMMMNx.                                  .xWM
+MMMMMMMW0:.                                    ,KM
+MMMMMWKo.      .:okOOOxc..        .';:cc;.      lN
+MMMMWk'      .oKWMMMMMMWKOl.    .lONWWMMWKl.    .k
+MMMNd.      .kWMMMMMMMMMMMNo.  'kWMMMMMMMMWO'    :
+MMM0'      .oWMMMMMMMMMMMMMO. .dWMMMMMMMMMMNl    .
+MMMx.      .dWMMMMMMMMMMMMWx. .kWMMMMMMMMMMNl     
+MMMx.       ;KMMMMMMMMMMWW0;   lNMMMMMMMMMWx.     
+MMM0,        ;OWMMMMMMWXd:'    .c0WMMMMMW0l.     .
+MMMWx.        .;dk00Oxl'         .:odddo;.       l
+MMMMWx.            .                           .cX
+MMMMMWO;                                      'xNM
+MMMMMMWx.                                  .;dXMMM
+MMMMMWO'                                .;o0NMMMMM
+MMMMWk'                               .l0NMMMMMMMM
+MMMWk.                               :0WMMMMMMMMMM
+MMWx.                              .lXMMMMMMMMMMMM
+MWx.                             .;xNMMMMMMMMMMMMM
+Nd.                    ..',;codk0KWMMMMMMMMMMMMMMM
+o.             ..,:ldxOKXNNWMMMMMMMMMMMMMMMMMMMMMM
+.     ..';codkOKNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+...,cox0XWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+
+  -->
+<!--
+  You have awakened Kuro
+                      -->
+  <title>Nekoweb Docs | Deploying </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css">
+  <meta name="darkreader-lock" content="">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/x-icon" href="/assets/images/index/favicon.ico">
+  <link rel="shortcut icon" href="/assets/images/index/favicon.ico" type="image/x-icon">
+
+  <!-- METADATA -->
+  <meta content="" property="og:title">
+  <meta name="theme-color" content="#ffbcb1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nekoweb Documentation">
+  <meta property="og:url" content="https://docs.nekoweb.org//deployment">
+  <meta property="og:title" content="Nekoweb for Webdevs">
+  <meta property="og:description" content="Learn HTML and CSS, Build a site, Share your creation.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Huninn&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+</head>
+<body>
+
+  <div class="container">
+
+<header>
+    <div class="logo">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-55 0 134.8397216796875 151.1114044189453" class="kuro">
+<path d="M0 0 C1.98 0.33 3.96 0.66 6 1 C7.1483058 4.41584072 8.29321208 7.83281142 9.4375 11.25 C9.76298828 12.21808594 10.08847656 13.18617187 10.42382812 14.18359375 C10.73642578 15.11816406 11.04902344 16.05273438 11.37109375 17.015625 C11.65911865 17.87446289 11.94714355 18.73330078 12.24389648 19.61816406 C12.91146327 21.72109643 13.46488209 23.85952838 14 26 C24.89 26.99 24.89 26.99 36 28 C37.22976562 26.0509375 38.45953125 24.101875 39.7265625 22.09375 C40.93294852 20.21396727 42.14649746 18.33900538 43.36083984 16.46435547 C44.20048151 15.15965156 45.032598 13.85007263 45.85693359 12.53564453 C47.0439674 10.64581815 48.25704991 8.77523337 49.4765625 6.90625 C49.83932281 6.31565796 50.20208313 5.72506592 50.57583618 5.11657715 C51.66650391 3.47851563 51.66650391 3.47851563 54 1 C57.28271484 0.63085938 57.28271484 0.63085938 60 1 C64.78799473 15.4735837 69.30975401 30.03335865 73.67810059 44.63870239 C74.22238135 46.45074182 74.77187537 48.26122419 75.32678223 50.07003784 C79.59247016 64.00191078 82.57507374 75.23726801 76 89 C71.08752028 98.09826126 64.72175896 103.54745167 55.6875 108.375 C48.90805728 112.3388505 45.55777667 117.38720151 41.77807617 124.18505859 C41.3679126 124.90516113 40.95774902 125.62526367 40.53515625 126.3671875 C40.188479 127.01800293 39.84180176 127.66881836 39.48461914 128.33935547 C35.94711294 132.29628972 29.07963515 132.77911856 24.05444336 133.97119141 C23.28131302 134.1568013 22.50818268 134.34241119 21.71162415 134.53364563 C19.17171007 135.14249979 16.63085058 135.7472863 14.08984375 136.3515625 C12.31675973 136.77461406 10.5436938 137.19774143 8.77064514 137.62094116 C5.06166906 138.50542791 1.35216426 139.38765798 -2.35766602 140.26855469 C-7.10919886 141.39719522 -11.85886327 142.53349692 -16.60810184 143.67174721 C-20.26604384 144.54718265 -23.92518597 145.41751494 -27.58468437 146.28641891 C-29.3365841 146.7032424 -31.08805047 147.12189166 -32.83906746 147.54240799 C-35.28608996 148.1294835 -37.7347022 148.709411 -40.18383789 149.28759766 C-40.90449432 149.4621196 -41.62515076 149.63664154 -42.36764526 149.81645203 C-45.95588647 150.6554927 -49.31305275 151.40040652 -53 151 C-53.66 150.34 -54.32 149.68 -55 149 C-54.63716644 145.44767723 -53.50179159 142.67670051 -51.83520508 139.54858398 C-51.38836868 138.70098007 -50.94153229 137.85337616 -50.4811554 136.98008728 C-49.99881943 136.07786942 -49.51648346 135.17565155 -49.01953125 134.24609375 C-48.01050937 132.32125613 -47.00206297 130.39611674 -45.99414062 128.47070312 C-44.40061609 125.44308043 -42.80226645 122.41829069 -41.19360352 119.39868164 C-39.64219885 116.48004976 -38.11083386 113.55161243 -36.58203125 110.62109375 C-36.09362259 109.71685165 -35.60521393 108.81260956 -35.102005 107.88096619 C-34.66462509 107.03651443 -34.22724518 106.19206268 -33.77661133 105.32202148 C-33.38435867 104.58209457 -32.99210602 103.84216766 -32.58796692 103.07981873 C-31.77007728 100.97082816 -31.77007728 100.97082816 -32.80131531 98.85975647 C-34.13611463 96.78881848 -35.51530151 94.76206708 -36.9375 92.75 C-43.41603385 82.96091952 -44.65722206 73.66174728 -42.4140625 61.9375 C-40.4388845 55.55894353 -37.07220654 51.46741644 -32.48828125 46.7109375 C-24.30517965 37.79559604 -17.94368697 27.03334566 -11.29394531 16.95703125 C-8.99834953 13.48505091 -6.68551609 10.0245608 -4.375 6.5625 C-3.52857402 5.29301663 -2.68221292 4.02349 -1.8359375 2.75390625 C-0.92714844 1.39072266 -0.92714844 1.39072266 0 0 Z M-13.1015625 50.6953125 C-17.59917116 55.42258629 -20.21289125 60.49121606 -21 67 C-20.61192331 74.0881066 -17.77369736 79.37228671 -12.625 84.25 C-7.91262782 87.39158145 -3.84588787 88.60973131 1.8515625 87.66015625 C8.88386958 85.49932008 13.60126927 81.04772589 17.125 74.734375 C19.83157086 69.36956489 20.02574424 63.4933918 18.31640625 57.671875 C15.61530017 51.79893065 11.8915958 48.21447024 5.875 45.6875 C-1.12045362 44.01467413 -7.58114452 46.24203851 -13.1015625 50.6953125 Z M32.1875 54.9375 C28.01321281 60.78150207 26.98629506 65.88294654 28 73 C29.64995786 77.72889708 31.98210751 81.72236526 36.1875 84.5625 C40.68720688 86.66106178 45.15808825 86.96690616 50 86 C56.44325693 83.15087233 60.12689243 79.34477922 63 73 C64.7914557 67.62563291 64.71176628 62.93205434 62.375 57.8125 C59.90894279 53.33836764 56.59988363 50.29994182 52 48 C43.59029225 47.06217153 37.94210927 48.46356458 32.1875 54.9375 Z " fill="currentColor"/>
+</svg>
+    <h1>Nekoweb Docs</h1>
+    </div>
+
+    <button onclick="myFunction()">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu-icon lucide-menu"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+    </button>
+    <script>
+
+function myFunction() {
+  document.getElementById("togglenav").classList.toggle("show");
+  const main = document.getElementById("togglemain");
+  const current = getComputedStyle(main).padding;
+
+  main.style.padding = current === "10px" ? "10px 10px 10px 30px" : "10px";
+}
+
+    </script>
+  </header>
+
+<div class="mainfl">
+<div id="togglenav">
+      <nav>
+  <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/getting-around">Getting Around</a></li>
+        <li><a href="/">HTML Basics</a></li>
+        <li><a href="/">CSS Basics</a></li>
+        <li><a href="/">Layouting</a></li>
+        <li><a href="/">Accessibility</a></li>
+        <li><a href="/">Resposniveness</a></li>
+        <li><a href="/eleventy">Eleventy</a></li>
+        <li><a href="/deployment">Deployment</a></li>
+        <br>
+        <li><a href="/credits">Credits</a></li>
+        <li><a href="https://layercake.moe/">Creator</a></li>
+    </ul>
+</nav>
+
+  <div class="mobileafternav">.</div>
+</div>
+<main id="togglemain" class="main-pad">
+  <h2>Deploying to Nekoweb</h2>
+<p><i>Last updated: <span class="lastupd">January 19, 2026</span></i><br>
+<i>Authors: <a class="lastupd" href="https://jbc.lol/">JB</a> and <a class="lastupd" href="https://moosyu.github.io/">Moosyu</a></i></p>
+<h2>Disclaimer</h2>
+<p>We will try to deploy the site you created on the <a href="/eleventy">Eleventy guide</a> as an example, but you can do this on all other SSGs/frameworks with zero or some slight modification to the guide.</p>
+<p>Some SSGs or frameworks (like Astro and Svelte) might have their own deployment libraries that is more integrated to the framework itself. Check your framework's integrations/libraries repository first and use that instead of following this, as it can have more features than the things shown here.</p>
+<h2>Overview</h2>
+<p>If you've been editing your site locally for a while, you may want to know how to upload it directly after building it. This is especially useful if you have switched to a SSG for example but are still manually uploading your files to the Nekoweb dashboard. This guide will outline automating your deployment workflow so you can either run a command or push it to your GitHub repository, then using your Github repository to automaticallly deploy your site to Nekoweb.</p>
+<p>This guide consists of 2 seperate ways to deploy your Nekoweb site, <a href="#using-deploy2nekoweb">using deploy2nekoweb</a>, and <a href="#creating-your-own-using-the-nekoweb-api-library">creating your own using the Nekoweb API library</a>.</p>
+<h2>Prerequisites</h2>
+<p>This are the things you need for both methods:</p>
+<ul>
+<li>A Nekoweb account</li>
+<li>A SSG project, in this guide we will use the site you created with the <a href="/eleventy">Eleventy guide</a></li>
+<li>A Nekoweb API key (you can get one by going to <a href="https://nekoweb.org/api">Nekoweb API page</a> and pressing 'Regenerate')</li>
+<li>The folder name of your site</li>
+</ul>
+<p>Each way has it's own prerequisites you need to follow alongside the above.</p>
+<h2>Using deploy2nekoweb</h2>
+<p>Github is a free cloud-based <span class="help" title="Git is a popular version control system used mainly to manage different versions of the same code so developers can collaborate">Git</span> server. Even if you have never use Github's collaboration features I'd recommend it just for its ability to back up your code and view your code's version history, though it should be noted that Github isn't the only Git server out there. Nekoweb even has its own git server, however I have only used Github so I have no way of knowing if the following deployment methods would work on the alternative Git servers. Github has a feature called Github Actions, which, in conjunction with <a href="https://deploy.nekoweb.org/">deploy2nekoweb</a> allows Github to be a kind of middle-man between you and Nekoweb, building your project for you and uploading it to Nekoweb. This means you no longer have to deal with zipping your project up, you can just commit your changes and it will be updated automatically.</p>
+<p>First create a Github account and create a repository for your site. I highly recommend then downloading <a href="https://desktop.github.com/">Github Desktop</a>, though you could always just download only <a href="https://git-scm.com/">Git</a>. Github Desktop lacks the control of using Git but it's very easy to use and will let you get your bearings a little. Now, assuming you chose Github Desktop, log into your Github account through it and clone your empty repository you created earlier by pressing the &quot;Add&quot; dropdown. Go to your new repository's location in your file manager by pressing &quot;Show in Explorer&quot; in Github Desktop. Inside this folder a new file named .gitignore (no file extension, just that). Inside .gitignore you're going to want to add the following:</p>
+<pre><code>_site/
+node_modules/
+package-lock.json
+</code></pre>
+<p>This will prevent these files from being added to your repository when you upload as they'd just be unnecessary bloat. If you'd like to maintain your site at a specific version of your packages however, you may want to remove package-lock.json from your .gitignore, but for most I'd just leave it like that. Next copy and paste over all the files from your Eleventy project's current directory into your newly cloned and almost empty repository's folder on your computer, this will be where you work on your site from now on. If you go into Github Desktop you'll likely see a huge list of changed files, that means you're doing this correctly.</p>
+<p>Next create a new folder inside your Github repository's folder on your computer and name it .github. Inside the .github folder create another folder, call this one workflows. Finally inside workflows create a new file, it can have any name as long as it has the .yml file extension. I've named mine build.yml. You can name the YAML file anything but the folders have to be named exactly.</p>
+<p>The file structure of your repository should look something like:</p>
+<pre><code>.
+├── .github/
+│   └── workflows/
+│       └── build.yml
+├── _site
+├── node_modules
+├── src
+├── .eleventy.js
+├── .gitignore
+├── package.json
+└── package-lock.json
+</code></pre>
+<p>Inside of your new YAML file add this:</p>
+<pre><code class="language-yml">name: Build and Deploy to Nekoweb
+
+on:
+  push:
+    branches: [&quot;main&quot;]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v4
+
+        - uses: actions/setup-node@v3
+          with:
+            node-version: 20.x
+
+        - run: npm install
+
+        - run: npx @11ty/eleventy
+
+        - uses: indiefellas/deploy2nekoweb@main
+          with:
+            nekoweb-api-key: ${{ secrets.NEKOWEB_API_KEY }}
+            nekoweb-domain: 'yoursite.nekoweb.org'
+            nekoweb-username: 'yourname'
+            directory: 'youroutputfolder'
+</code></pre>
+<p>If your master branch isn't called main (which it probably will be if you followed this guide word for word) then you need to change that. Otherwise, you only need to fill in the last three lines accordingly. For nekoweb-domain it's whatever you domain is, if you have a custom domain write that, if not use your nekoweb.org domain. For nekoweb-username it's just your username on Nekoweb whether you have a custom domain or not. The directory is whatever folder you set as your output in your .eleventy.js, for me it's _site. Now, go into Github, go to your repository, click &quot;Settings&quot;, look at the settings sidebar and click &quot;Secrets and variables&quot;, click &quot;Actions&quot; and then create a &quot;New repository secret&quot;. Set this secret's name as NEKOWEB_API_KEY, and put the API key you got from the Nekoweb API page.</p>
+<p>However, before creating your first commit to your Github repository its important to note that this Github workflow first deletes everything inside the folder it's uploading into. This means if you have something like an elements.css file you'd like to keep, you're going to want to add it somewhere in your Eleventy site and add a passthrough copy in your .eleventy.js's export function to send it to the output. I just put my elements.css inside of the already made CSS folder so it's passed through with the rest of the CSS files.</p>
+<p>Now, still assuming you're using Github Desktop, inside the textbox in the bottom left saying &quot;Summary required&quot; enter a short summary of the changes you made (or whatever you want, that gets messy fast though if you look through your version history). Now you can add a further description or just click the blue commit button. At the top you'll see something that says &quot;Publish branch&quot; with a one and a little up arrow beside it. Click that and you'll have made your first Github commit to your site! Within the next minute or so your Nekoweb site will have been updated if you've done this correctly. In the future the &quot;Publish branch&quot; button will say &quot;Push origin&quot; instead but that's just about the only difference to this process. Now when you edit your site from inside the repository's folder on your computer, Git will see these changes and you'll be able to commit them.</p>
+<h2>Creating your own using the Nekoweb API library</h2>
+<p>If you don't want to dabble with Git, you can interface directly to the Nekoweb API and upload using that. Note that this requires some knowledge of JavaScript, but this guide will give you a code example to copy and paste on.</p>
+<h3>Setting up</h3>
+<p>To start, we need a couple libraries, one to interface with the Nekoweb API, and one to zip up our website. We can install it using <code>npm</code>:</p>
+<pre><code>&gt; npm install @indiefellas/nekoweb-api adm-zip @types/adm-zip
+</code></pre>
+<p>After that, create a <code>deploy.json</code> file on the root of the project (the folder that contains your <code>.eleventy.js</code> file), and add this content:</p>
+<pre><code class="language-json">{
+  &quot;nekowebApiKey&quot;: &quot;YOUR_NEKOWEB_API_KEY&quot;,
+  &quot;nekowebFolder&quot;: &quot;/example.nekoweb.org&quot;
+}
+</code></pre>
+<p>Edit <code>YOUR_NEKOWEB_API_KEY</code> to the API key provided by the Nekoweb API page and <code>/example.nekoweb.org</code> to your site's domain folder.</p>
+<blockquote>
+<p>Note: If you have tracked your site to git, add <code>deploy.json</code> to <code>.gitignore</code> to prevent it from being tracked by Git and exposing your Nekoweb API key. If you accidentally commited it, regenerate a new API key.</p>
+</blockquote>
+<p>Now, create a <code>deploy.js</code> file on the root of your project, and add this:</p>
+<details>
+<summary><strong>For ES Modules</strong> (if your <code>package.json</code> has <code>"type": "module"</code>)</summary>
+<pre><code>import NekowebAPI from &quot;@indiefellas/nekoweb-api&quot;;
+import AdmZip from &quot;adm-zip&quot;;
+import Deploy from &quot;./deploy.json&quot; with { type: &quot;json&quot; }
+
+/**
+* Deploys 11ty site to Nekoweb
+* @param {string} outFolder
+*/
+export default async function deploySite(outFolder) {
+  console.log('[Deploy] Deploying to Nekoweb...')
+  const zip = new AdmZip();
+  var folder = Deploy.nekowebFolder
+  if (!folder.startsWith(&quot;/&quot;)) folder = &quot;/&quot; + Deploy.nekowebFolder
+  zip.addLocalFolder(outFolder, folder)
+  const nekowebApi = new NekowebAPI({
+    apiKey: Deploy.nekowebApiKey,
+    logging: (t, m) =&gt; console.log(`[Deploy] ${m}`)
+  })
+  const zipBuffer = await zip.toBufferPromise()
+  const bigFile = await nekowebApi.createBigFile()
+  await bigFile.append(zipBuffer)
+  try {
+    await nekowebApi.delete(folder)
+  } catch (error) {
+    console.log('[Deploy] No existing folder to delete (this is fine for first deploy)')
+  }
+  await bigFile.import(&quot;/&quot;)
+  const siteInfo = await nekowebApi.getSiteInfo(folder.replace(/^\//, &quot;&quot;).split(&quot;/&quot;)[0])
+  console.log('[Deploy] Done! You can now check it on', 'https://' + siteInfo.domain)
+}
+</code></pre>
+</details>
+<details>
+<summary><strong>For CommonJS</strong> (if your <code>package.json</code> does NOT have <code>"type": "module"</code>)</summary>
+<pre><code>const NekowebAPI = require(&quot;@indiefellas/nekoweb-api&quot;).default;
+const AdmZip = require(&quot;adm-zip&quot;);
+const Deploy = require(&quot;./deploy.json&quot;);
+
+/**
+* Deploys 11ty site to Nekoweb
+* @param {string} outFolder
+*/
+async function deploySite(outFolder) {
+  console.log('[Deploy] Deploying to Nekoweb...')
+  const zip = new AdmZip();
+  let folder = Deploy.nekowebFolder
+  if (!folder.startsWith(&quot;/&quot;)) folder = &quot;/&quot; + Deploy.nekowebFolder
+  zip.addLocalFolder(outFolder, folder)
+  const nekowebApi = new NekowebAPI({
+    apiKey: Deploy.nekowebApiKey,
+    logging: (t, m) =&gt; console.log(`[Deploy] ${m}`)
+  })
+  const zipBuffer = await zip.toBufferPromise()
+  const bigFile = await nekowebApi.createBigFile()
+  await bigFile.append(zipBuffer)
+  try {
+    await nekowebApi.delete(folder)
+  } catch (error) {
+    console.log('[Deploy] No existing folder to delete (this is fine for first deploy)')
+  }
+  await bigFile.import(&quot;/&quot;)
+  const siteInfo = await nekowebApi.getSiteInfo(folder.replace(/^\//, &quot;&quot;).split(&quot;/&quot;)[0])
+  console.log('[Deploy] Done! You can now check it on', 'https://' + siteInfo.domain)
+}
+module.exports = deploySite;
+</code></pre>
+</details>
+<p>After that, let's go to your <code>.eleventy.js</code> file and we add this on the config, above the file:</p>
+<pre><code class="language-js">import deploySite from &quot;./deploy.js&quot;;
+</code></pre>
+<p>or if you're using CommonJS,</p>
+<pre><code class="language-js">const deploySite = require(&quot;./deploy.js&quot;)
+</code></pre>
+<p>and this inside your eleventyConfig function:</p>
+<pre><code class="language-js">eleventyConfig.on('eleventy.after', async ({ runMode, dir, results }) =&gt; {
+  if (runMode === 'build' &amp;&amp; results &amp;&amp; results.length &gt; 0) {
+    await deploySite(dir.output)
+  }
+})
+</code></pre>
+<p>Now, run <code>npm run build</code>, and it should build your site!</p>
+
+</main>
+</div>
+
+  </div>
+
+<!-- Tippy js, for tooltips yay -->
+<script>
+  document.querySelectorAll('[title]').forEach(el => {
+    el.setAttribute('data-tippy-content', el.getAttribute('title'));
+    el.removeAttribute('title');
+  });
+
+  tippy('[data-tippy-content]', {
+    theme: 'nwd',
+    arrow: true,
+    followCursor: false,
+  });
+</script>
+
+</body>
+</html>
