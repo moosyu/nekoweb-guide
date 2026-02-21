@@ -231,9 +231,7 @@ nav li a {
     padding-top: 6px;
     display: block;
     text-decoration: none;
-    background: linear-gradient(180deg, var(--cream), var(--peach));
     text-align: center;
-    box-shadow: -1.5px -1.5px 1px inset var(--lightbrown), 0px 0px 0px 2px var(--orange);
     text-shadow: 0px -1px #fff;
     border-radius: 3px;
     border-top-left-radius: 10px 20px;
@@ -245,6 +243,18 @@ nav li a {
     outline: 1px solid var(--almostwhite);
     margin: 0 auto;
     margin-top: 12px !important;
+}
+
+nav li a:not(.disabled) {
+    background: linear-gradient(180deg, var(--cream), var(--peach));
+    box-shadow: -1.5px -1.5px 1px inset var(--lightbrown), 0px 0px 0px 2px var(--orange);
+  }
+
+  .disabled {
+    cursor: auto;
+    filter:grayscale(5%);
+    background: linear-gradient(180deg, var(--orange), var(--peach));
+    box-shadow: -1.5px -1.5px 1px inset white, 1.5px 1.5px 1px inset var(--lightbrown), 0px 0px 0px 2px var(--orange);
 }
 
 nav li a:first-of-type { margin-top:0;}
