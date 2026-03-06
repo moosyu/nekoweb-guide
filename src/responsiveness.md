@@ -2,7 +2,7 @@
 title: Responsiveness
 updated: 2025-11-16
 layout: /main.njk
-description: The Unofficial Nekoweb Documentaton
+description: The Unofficial Nekoweb Documentation
 ---
 ## responsiveness
 *Last updated: <span class="lastupd">{{page.date | formatDate}}</span>*

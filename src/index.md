@@ -1,7 +1,7 @@
 ---
 title: Home
 layout: /main.njk
-description: The Unofficial Nekoweb Documentaton
+description: The Unofficial Nekoweb Documentation
 ---
 ## Welcome
 Hi there, this website functions as a guide to Nekoweb as well as I know it. It'll focus on getting you started such as introductions to Nekoweb specific stuff as well as basics on making your website. Please be aware that this creation is fan-made by a common user such as yourself, and is not official documentation. Furthermore, I may not be able to write about everything, as I am only able to write about the topics I am knowledgeable about!

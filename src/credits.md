@@ -2,7 +2,7 @@
 title: Credits
 updated: 2025-11-16
 layout: /main.njk
-description: The Unofficial Nekoweb Documentaton
+description: The Unofficial Nekoweb Documentation
 ---
 ## Credits
 *Last updated: <span class="lastupd">{{updated | formatDate}}</span>*

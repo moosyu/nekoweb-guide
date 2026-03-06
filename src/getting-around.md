@@ -2,7 +2,7 @@
 title: Getting Around
 updated: 2026-01-17
 layout: /main.njk
-description: The Unofficial Nekoweb Documentaton
+description: The Unofficial Nekoweb Documentation
 ---
 # Getting started - Exploring Nekoweb Dashboard and Settings
 *Last updated: <span class="lastupd">{{updated | formatDate}}</span>*

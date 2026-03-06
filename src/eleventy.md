@@ -2,7 +2,7 @@
 title: Eleventy
 updated: 2026-01-18
 layout: /main.njk
-description: The Unofficial Nekoweb Documentaton
+description: Creating a site with 11ty
 ---
 ## Getting started with Eleventy/11ty
 *Last updated: <span class="lastupd">{{updated | formatDate}}</span>*

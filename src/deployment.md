@@ -2,7 +2,7 @@
 title: Deployment
 updated: 2026-01-19
 layout: /main.njk
-description: The Unofficial Nekoweb Documentaton
+description: Deploying your site to Nekoweb
 ---
 ## Deploying to Nekoweb
 *Last updated: <span class="lastupd">{{updated | formatDate}}</span>*

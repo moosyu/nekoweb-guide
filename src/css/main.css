@@ -251,10 +251,10 @@ nav li a:not(.disabled) {
   }
 
   .disabled {
-    cursor: auto;
     filter:grayscale(5%);
     background: linear-gradient(180deg, var(--orange), var(--peach));
     box-shadow: -1.5px -1.5px 1px inset white, 1.5px 1.5px 1px inset var(--lightbrown), 0px 0px 0px 2px var(--orange);
+    pointer-events: none;
 }
 
 nav li a:first-of-type { margin-top:0;}
