@@ -224,7 +224,7 @@ nav li {
     margin-right: 4px;
 }
 
-nav li a {
+nav li a, nav li summary {
     width: 90%;
     height: 100%;
     padding: 10px;
@@ -245,7 +245,8 @@ nav li a {
     margin-top: 12px !important;
 }
 
-nav li a:not(.disabled) {
+nav li a:not(.disabled), nav li summary {
+  font-weight: bold;
     background: linear-gradient(180deg, var(--cream), var(--peach));
     box-shadow: -1.5px -1.5px 1px inset var(--lightbrown), 0px 0px 0px 2px var(--orange);
   }
@@ -259,7 +260,7 @@ nav li a:not(.disabled) {
 
 nav li a:first-of-type { margin-top:0;}
 
-nav li a:hover {
+nav li a:hover, nav li summary:hover {
     background: linear-gradient(180deg, var(--orange), var(--peach));
     box-shadow: -1.5px -1.5px 1px inset white, 1.5px 1.5px 1px inset var(--lightbrown), 0px 0px 0px 2px var(--orange);
 }

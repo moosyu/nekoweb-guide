@@ -37,7 +37,7 @@ o.             ..,:ldxOKXNNWMMMMMMMMMMMMMMMMMMMMMM
 <!--
   You have awakened Kuro
                       -->
-  <title>Nekoweb Docs | HTML Basics </title>
+  <title>Nekoweb Docs | Getting Around </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/main.css">
   <meta name="darkreader-lock" content="">
@@ -51,7 +51,7 @@ o.             ..,:ldxOKXNNWMMMMMMMMMMMMMMMMMMMMMM
   <meta name="theme-color" content="#ffbcb1">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Nekoweb Documentation">
-  <meta property="og:url" content="https://docs.nekoweb.org//html-basics">
+  <meta property="og:url" content="https://docs.nekoweb.org//getting-around/elements-css">
   <meta property="og:title" content="Nekoweb for Webdevs">
   <meta property="og:description" content="Learn HTML and CSS, Build a site, Share your creation.">
 
@@ -109,7 +109,6 @@ function myFunction() {
         <li><a class="disabled" href="/">Layouting</a></li>
         <li><a class="disabled" href="/">Accessibility</a></li>
         <li><a class="disabled" href="/">Resposniveness</a></li>
-        <li><a href="/ssi">SSI</a></li>
         <li><a href="/eleventy">Eleventy</a></li>
         <li><a href="/deployment">Deployment</a></li>
         <br>
@@ -121,9 +120,89 @@ function myFunction() {
   <div class="mobileafternav">.</div>
 </div>
 <main id="togglemain" class="main-pad">
-  <h2 id="html-basics" tabindex="-1">HTML BASICS</h2>
-<p><i>Last updated: <span class="lastupd">November 16, 2025</span></i></p>
-<!-- basic layout, the starting stuff, the basic html tags, semantic html-->
+  <h1 id="getting-started---elements.css%2C-the-sitebox-and-the-postbox" tabindex="-1">Getting started - Elements.css, the sitebox and the postbox</h1>
+<p><i>Last updated: <span class="lastupd">February 23, 2026</span></i></p>
+<p><b>elements.css</b> is used for both your sitebox and your postbox. Your sitebox is the box on the explore page that can be customised to look how you want, while the postbox is the box your posts sit on in <a href="https://nekoweb.org/feed">the nekoweb feed</a>. The elements.css file has an image size restriction of 1MB, please make sure that your images are compressed and/or resized to appropriate sizes so it works in elements.css. If any of your images within your sitebox doesn't load, your css is reversed to default. Please also note that elements.css is rather restricted in what it allows, below is a list of things that do not work in elements.css:</p>
+<ul>
+<li>any custom fonts (aka @font-face)</li>
+<li>animations using @keyframes</li>
+</ul>
+<p>The default elements.css file can be found below:</p>
+<pre><code>/*
+    Don't use this file to edit your site style! Create a different CSS file for that.
+    This file defines how custom elements (like sitebox) will look like.
+    Setting CSS that breaks main nekoweb site on purpose is prohibited and may result in ban and site deletion!
+*/
+
+/* Must start with &quot;.site-box&quot;. Change how your website will appear on main nekoweb site: https://nekoweb.org/assets/siteboxes.png */
+.site-box {
+    text-align: center;
+    background-image: url(/assets/cookiebox.png); /* Only your-username.nekoweb.org URLs allowed, use FULL url to your file like https://your-username.nekoweb.org/your-username.nekoweb.org/bg.png */
+    background-repeat: no-repeat;
+    color: #b08271;
+    font-size: 12px;
+}
+.site-box &gt; a &gt; p {
+    color: var(--darkbrown);
+    font-weight: bold;
+}
+.site-box &gt; a &gt; span {
+    color: var(--darkbrown);
+}
+
+/* Style for your 'Follow on Nekoweb' button (&lt;iframe src=&quot;https://nekoweb.org/frame/follow&quot; frameborder=&quot;0&quot; width=&quot;170&quot; height=&quot;28&quot;&gt;&lt;/iframe&gt;) */
+.follow {
+
+}
+
+/* Style for your post box (must start with &quot;.post-box&quot;) */
+.post-box {
+    background-color: #fff2cc;
+    border: 4px solid #ecbfa6;
+    padding: 15px;
+    border-radius: 5px;
+    color: #634c53;
+    font-weight: normal;
+}
+
+.post-box .post-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+</code></pre>
+<p>As mentioned in the file itself, changing aspects in the sitebox must start with using the class <code>.site-box</code> and all aspects changing the postbox must start using the class <code>.post-box</code>. For a guide on how to set up an rss feed and thus utilise the postbox, you can see <a href="https://help.joo.sh/rss">Joosh's RSS Tutorial</a>. It is also important to note the difference in <code>.follow</code> and the follow button on your sitebox, edited with <code>.site-box .follow</code>, .follow is used specifically for the follow iframe (implemented with <code>&lt;iframe src=&quot;https://nekoweb.org/frame/follow&quot; frameborder=&quot;0&quot; width=&quot;170&quot; height=&quot;28&quot;&gt;&lt;/iframe&gt;</code>), this is a customisable iframe that adds the follow button to your site. Meanwhile, .site-box .follow is used to customise the follow symbol on your sitebox, this is originally shown as the [+] symbol. There is a second alternative method to add a follow link to your site, as well. This is by using an a href link to 'https://nekoweb.org/follow/username.nekoweb.org', which will redirect you to a page asking if you would like to follow that user. If you use a custom domain, you should use that in place of the nekoweb subdomain.</p>
+<p>Below are some quick common codes that are frequently asked for to hide sections of the sitebox.</p>
+<p>Hiding the website screenshot on sitebox:</p>
+<pre><code>.site-box .sitefeature {
+    display: none;
+}
+</code></pre>
+<p>Making the follow &quot;[+]&quot; button an image:</p>
+<pre><code>.site-box .follow {
+content: url (&quot;image url&quot;);
+top: 10px;
+left: 10px;
+padding: 0px;
+}
+</code></pre>
+<p>the top and left can be used to adjust the placement of the image.</p>
+<p>Adding extra images to your site-box can be done with the use of ::before and ::after in css, below is an example of how I added the logo to the sitebox for my main site:</p>
+<pre><code>.site-box::after {
+    content: url(image url);
+    position: absolute;
+    background-size: contain;
+    top: -30px;
+    right: 160px;
+    width: 10px;
+    height: 10px;
+    z-index: 1;
+}
+</code></pre>
+<img src="/assets/getting-started/added-image-sitebox.png" alt="a screennshot of my sitebox, in the top right corner it has a logo added onto it">
+<p>Additionally, there is <a href="https://jbc.lol/utils/nekobox/">an unofficial testing space for your elements.css configiration hosted by jb</a>, while it doesn't test to check for the image limits (at least as of writing), it is good resource to adjust how your sitebox and postbox look.</p>
+
 </main>
 </div>
 
