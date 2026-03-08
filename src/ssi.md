@@ -278,16 +278,16 @@ posts.filter(post => !post.isDirectory && post.name.endsWith(".md")).sort((a, b)
     const baseName = post.name.slice(0, -3);
     const title = atob(post.preview).match(/^#\s+(.+)/m)?.[1] || baseName;
     const listItemEl = document.createElement("li");
-    listItemEl.innerHTML = `<a href="/moosyu/posts/${baseName}.html">${title}</a>`;
+    listItemEl.innerHTML = `<a href="/posts/${baseName}.html">${title}</a>`;
     postsList.append(listItemEl);
 });
 ```
 
-For the name displayed it assumes at the start of every post you're doing `# Post name`. If you aren't or something went wrong and this value can't be found, the name of the file instead. The posts are sorted by date modified, however if you'd prefer date created you can just switch uses of `modified_time` to `created_time`. Be sure to also change the dir path in the list directive if your file with that script in it is placed somewhere differently to mine.
+For the name displayed this script assumes at the start of every post you're doing `# Post name` (though if you're up for it you can change the match accordingly depending on what you're doing). If you aren't or something went wrong and this value can't be found, the name of the file is used instead. The posts are sorted by date modified, however if you'd prefer date created you can just switch uses of `modified_time` to `created_time`. Be sure to also change the dir path in the list directive if your file with that script in it is placed somewhere differently to mine. If you want to edit how the list item looks you'll need to change the code the backticks on line 8.
 
 ## Bonus directives that didn't fit in naturally (fsize, follow and error)
 
-The `fsize` directive displays the size of the specified file and can be used like so: `<!--# fsize file="" -->`. It has three attributes. The only required one is file which is the path to the file you want to display the size of. Like render only seems to display properly if you use an absolute path. The unit attribute is optional and defaults to auto and bases its choice on the whether the file's size is closest to a byte, kilobyte, megabyte or gigabyte. You can also manually specify the unit with `unit=""`, b (byte), kb (kilobyte), mb (megabyte), gb (gigabyte) or auto. The final attribute is format which is optional and a boolean, if true the number returned has commas added as group separators.
+The `fsize` directive displays the size of the specified file and can be used like so: `<!--# fsize file="" -->`. It has three attributes. The only required one is file which is the path to the file you want to display the size of. Like render only seems to display properly if you use an absolute path. The `unit` attribute is optional and defaults to auto and bases its choice on the whether the file's size is closest to a byte, kilobyte, megabyte or gigabyte. You can also manually specify the unit with `unit=""`, b (byte), kb (kilobyte), mb (megabyte), gb (gigabyte) or auto. The final attribute is `format` which is optional and a boolean, if true the number returned has commas added as group separators.
 
 The `follow` directive is just an alias for `<iframe src="https://nekoweb.org/frame/follow" frameborder="0" width="170" height="28"></iframe>` and should be used accordingly. The button can be styled by using the .follow and .following classes in your elements.css.
 
