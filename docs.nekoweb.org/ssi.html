@@ -209,10 +209,10 @@ function myFunction() {
 </code></pre>
 <div class="note">
 <h4 id="note%3A-5" tabindex="-1">Note:</h4>
-<p>Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you may do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide.</p>
+<p>Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you could do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide.</p>
 </div>
 <h2 id="displaying-site-stats-with-views%2C-updates-and-followers-directives" tabindex="-1">Displaying site stats with views, updates and followers directives</h2>
-<p>If you're somewhat familiar with Nekoweb's ecosystem you're likely aware of <a href="https://maxpixels.moe/resources/nekoweb-stats/">Max's script</a> to display your site stats, however fortunately enough the SSI also has the capabilities to display view count, update count and follower count. By writing HTML like so:</p>
+<p>If you're somewhat familiar with Nekoweb's ecosystem you're likely aware of <a href="https://maxpixels.moe/resources/nekoweb-stats/">Max's script</a> to display your site stats, however the SSI also have the capabilities to display view count, update count and follower count. By writing HTML like so:</p>
 <pre><code class="language-html">&lt;p&gt;This site has: &lt;!--# views --&gt; views.&lt;/p&gt;
 &lt;p&gt;This site has been updated &lt;!--# updates --&gt; times &lt;/p&gt;
 &lt;p&gt;This site has: &lt;!--# followers --&gt; followers.&lt;/p&gt;
@@ -224,10 +224,10 @@ function myFunction() {
 </div>
 <h2 id="making-a-blog-with-render-and-list" tabindex="-1">Making a blog with render and list</h2>
 <p>There are three premium Neko tier directives, render, error and list. Render and list are often used in conjunction to make things like blogs. Render allows you to display the contents of a <span class="help" title="A markup language used for writing and formatting plain text with a simple syntax, making markdown popular for creating things like blog posts">markdown</span> file rendered in HTML without using a <span class="help" title="A tool that reads markdown and converts it to another format (HTML for us)">Markdown parser</span> like <a href="https://github.com/markedjs/marked">marked</a> and list returns a JSON array of files in a folder and some information about them encoded in <span class="help" title="An popular method of encoding data, making transferring it less complex">Base64</span>.</p>
-<p>To begin we'll need to create a markdown file, we can create a new folder called <code>posts</code> to store them. Inside it it we can make a file called <code>post-1.md</code> and inside put some random text for testing purposes. Now inside the posts folder we will create a new file named <code>post-1.html</code> which has our base layout imported, a title and also the directive <code>&lt;!--# render file=&quot;../posts/post-1.md&quot; --&gt;</code> placed inside the <code>content</code> block. Now inside this page markdown will be converted to HTML and inserted in our content block.</p>
+<p>To we'll need to create a new folder called <code>posts</code> to store our posts. Inside it it we can make a file called <code>post-1.md</code> and inside put some random text for testing purposes. Now, inside the <code>posts</code> folder we will create a new file named <code>post-1.html</code> which has our base layout imported, a title and also the directive <code>&lt;!--# render file=&quot;../posts/post-1.md&quot; --&gt;</code> placed inside the <code>content</code> block. If you view this page hopefully the markdown will be converted to HTML and inserted in our content block.</p>
 <div class="note">
 <h4 id="note%3A-7" tabindex="-1">Note:</h4>
-<p>Here I've used <code>../</code> instead of <code>./</code> which may seem odd when <code>post-1.md</code> is in the same directory as <code>post-1.html</code>. If you remember an earlier note, from within a block the file is relative to wherever the block was defined, not where the file is actually being used. Therefore I'm actually navigating from the <code>/layouts</code> directory to the <code>/posts</code> directory.</p>
+<p>Here I've used <code>../</code> instead of <code>./</code> which may seem odd when <code>post-1.md</code> is in the same directory as <code>post-1.html</code>. If you remember an earlier note, from within a block the <code>file</code> attribute is relative to wherever the block was defined, not where the block being used. Therefore I'm actually navigating from the <code>/layouts</code> directory to the <code>/posts</code> directory.</p>
 </div>
 <div class="note">
 <h4 id="note%3A-8" tabindex="-1">Note:</h4>
@@ -236,10 +236,12 @@ function myFunction() {
 <p>However as I'm sure you've noticed this method is lame, creating an HTML file for each post? Who has time for that? Fortunately there is a way to solve this issue, <code>_catchall.html</code>, which is available for everyone with cute kitty tier and above as well as the <code>{{filename}}</code> variable which returns the last section of the viewed page's URL with the file extension removed (e.g. in https://sitename.nekoweb.org/posts/post-1.html <code>{{filename}}</code> would return &quot;post-1&quot;). First we're going to create a file named <code>_catchall.html</code> inside our posts folder. This file acts much like not_found.html however it acts before it, so if someone goes to a page inside the posts folder that doesn't exist, _catchall.html will be displayed instead. This can be used to dynamically render markdown files similarly to how you could in an SSG like Astro or Eleventy. The code we can need to put in <code>_catchall.html</code> is rather simple, like so:</p>
 <pre><code>&lt;!--# layout file=&quot;../layouts/base.html&quot; --&gt;
 &lt;!--# block name=&quot;content&quot; --&gt;
-    &lt;!--# render file=&quot;../posts/.md&quot; notfound=&quot;Page not found&quot; --&gt;
+    &lt;!--# render file=&quot;../posts/{{filename}}.md&quot; notfound=&quot;Page not found&quot; --&gt;
 &lt;!--# endblock --&gt;
 </code></pre>
-<p>Now if we delete our <code>post-1.html</code> file, if someone was to visit that page post-1 will now be automatically rendered! You can also use the <code>flastmod</code> directive if you'd like to display the last modified date of that particular post. Generally you'd do something like <code>&lt;!--# flastmod file=&quot;../posts/{{filename}}}.md&quot; --&gt;</code> (as with before the file directory is relative to the layout's directory when inside a block) however flastmod also has two optional additional attributes, fmt which is how you format the string and timezone which uses the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">TZ identifier</a>. The default for these attributes looks like <code>&lt;!--# flastmod file=&quot;&quot; fmt=&quot;%Y-%MM-%dd %HH:%mm:%ss&quot; timezone=&quot;UTC&quot; --&gt;</code>. The format specifiers can be seen in the table below (courtesy of Dimden):</p>
+<p>Now if we delete our <code>post-1.html</code> file, if someone was to visit that page post-1 will now be automatically rendered! The one issue with this approach is that now we can't set a title properly. {{filename}} doesn't work as plain text as far as I know (and there's no echo directive) so the only option that I could think of is the following JS code being put in a <code>&lt;script&gt;</code> tag at the bottom of the content block (or using the defer attribute) <code>document.title = document.querySelector(&quot;h1&quot;).textContent</code>.</p>
+<p>I hate this solution however and if anyone knows a better way, please contact me (moosyu). This assumes you're titling every blog post with text within an <code>&lt;h1&gt;</code> tag (a single <code>#</code> in Markdown) and that the title is the first instance of an <code>&lt;h1&gt;</code>.</p>
+<p>You can also use the <code>flastmod</code> directive if you'd like to display the last modified date of that particular post. Generally you'd do something like <code>&lt;!--# flastmod file=&quot;../posts/{{filename}}}.md&quot; --&gt;</code> however flastmod also has two optional additional attributes, fmt which is how you format the string and timezone which uses the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">TZ identifier</a>. The default for these attributes looks like <code>&lt;!--# flastmod file=&quot;&quot; fmt=&quot;%Y-%MM-%dd %HH:%mm:%ss&quot; timezone=&quot;UTC&quot; --&gt;</code>. The format specifiers can be seen in the table below (courtesy of Dimden):</p>
 <table>
 <thead>
 <tr>
@@ -310,7 +312,7 @@ function myFunction() {
 </tr>
 </tbody>
 </table>
-<p>We can use the <code>list</code> directive to automatically generate a list of our blog posts. The list directive returns a JSON array encoded with Base64. The decoded output will look something like:</p>
+<p>With the actual posts set up properly can use the <code>list</code> directive to automatically generate a list of our blog posts. The list directive returns a JSON array encoded with Base64. The decoded output will look something like:</p>
 <pre><code class="language-json">[
     {
         &quot;name&quot;: &quot;_catchall.html&quot;,

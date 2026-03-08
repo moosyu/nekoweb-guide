@@ -135,13 +135,13 @@ In the end our `base.html` layout should look something like this:
 <div class="note">
 
 #### Note:
-Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you may do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide.
+Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you could do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide.
 
 </div>
 
 ## Displaying site stats with views, updates and followers directives
 
-If you're somewhat familiar with Nekoweb's ecosystem you're likely aware of [Max's script](https://maxpixels.moe/resources/nekoweb-stats/) to display your site stats, however fortunately enough the SSI also has the capabilities to display view count, update count and follower count. By writing HTML like so:
+If you're somewhat familiar with Nekoweb's ecosystem you're likely aware of [Max's script](https://maxpixels.moe/resources/nekoweb-stats/) to display your site stats, however the SSI also have the capabilities to display view count, update count and follower count. By writing HTML like so:
 
 ```html
 <p>This site has: <!--# views --> views.</p>
@@ -162,12 +162,12 @@ Displaying these stats this way will have them slightly out of date, depending o
 
 There are three premium Neko tier directives, render, error and list. Render and list are often used in conjunction to make things like blogs. Render allows you to display the contents of a <span class="help" title="A markup language used for writing and formatting plain text with a simple syntax, making markdown popular for creating things like blog posts">markdown</span> file rendered in HTML without using a <span class="help" title="A tool that reads markdown and converts it to another format (HTML for us)">Markdown parser</span> like [marked](https://github.com/markedjs/marked) and list returns a JSON array of files in a folder and some information about them encoded in <span class="help" title="An popular method of encoding data, making transferring it less complex">Base64</span>.
 
-To begin we'll need to create a markdown file, we can create a new folder called `posts` to store them. Inside it it we can make a file called `post-1.md` and inside put some random text for testing purposes. Now inside the posts folder we will create a new file named `post-1.html` which has our base layout imported, a title and also the directive `<!--# render file="../posts/post-1.md" -->` placed inside the `content` block. Now inside this page markdown will be converted to HTML and inserted in our content block.
+To we'll need to create a new folder called `posts` to store our posts. Inside it it we can make a file called `post-1.md` and inside put some random text for testing purposes. Now, inside the `posts` folder we will create a new file named `post-1.html` which has our base layout imported, a title and also the directive `<!--# render file="../posts/post-1.md" -->` placed inside the `content` block. If you view this page hopefully the markdown will be converted to HTML and inserted in our content block.
 
 <div class="note">
 
 #### Note:
-Here I've used `../` instead of `./` which may seem odd when `post-1.md` is in the same directory as `post-1.html`. If you remember an earlier note, from within a block the file is relative to wherever the block was defined, not where the file is actually being used. Therefore I'm actually navigating from the `/layouts` directory to the `/posts` directory.
+Here I've used `../` instead of `./` which may seem odd when `post-1.md` is in the same directory as `post-1.html`. If you remember an earlier note, from within a block the `file` attribute is relative to wherever the block was defined, not where the block being used. Therefore I'm actually navigating from the `/layouts` directory to the `/posts` directory.
 
 </div>
 
@@ -183,11 +183,15 @@ However as I'm sure you've noticed this method is lame, creating an HTML file fo
 ```
 <!--# layout file="../layouts/base.html" -->
 <!--# block name="content" -->
-    <!--# render file="../posts/{{filename}}.md" notfound="Page not found" -->
+    <!--# render file="../posts/{% raw %}{{filename}}{% endraw %}.md" notfound="Page not found" -->
 <!--# endblock -->
 ```
 
-Now if we delete our `post-1.html` file, if someone was to visit that page post-1 will now be automatically rendered! You can also use the `flastmod` directive if you'd like to display the last modified date of that particular post. Generally you'd do something like `<!--# flastmod file="../posts/{% raw %}{{filename}}{% endraw %}}.md" -->` (as with before the file directory is relative to the layout's directory when inside a block) however flastmod also has two optional additional attributes, fmt which is how you format the string and timezone which uses the [TZ identifier](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). The default for these attributes looks like `<!--# flastmod file="" fmt="%Y-%MM-%dd %HH:%mm:%ss" timezone="UTC" -->`. The format specifiers can be seen in the table below (courtesy of Dimden):
+Now if we delete our `post-1.html` file, if someone was to visit that page post-1 will now be automatically rendered! The one issue with this approach is that now we can't set a title properly. {% raw %}{{filename}}{% endraw %} doesn't work as plain text as far as I know (and there's no echo directive) so the only option that I could think of is the following JS code being put in a `<script>` tag at the bottom of the content block (or using the defer attribute) `document.title = document.querySelector("h1").textContent`.
+
+I hate this solution however and if anyone knows a better way, please contact me (moosyu). This assumes you're titling every blog post with text within an `<h1>` tag (a single `#` in Markdown) and that the title is the first instance of an `<h1>`.
+
+You can also use the `flastmod` directive if you'd like to display the last modified date of that particular post. Generally you'd do something like `<!--# flastmod file="../posts/{% raw %}{{filename}}{% endraw %}}.md" -->` however flastmod also has two optional additional attributes, fmt which is how you format the string and timezone which uses the [TZ identifier](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). The default for these attributes looks like `<!--# flastmod file="" fmt="%Y-%MM-%dd %HH:%mm:%ss" timezone="UTC" -->`. The format specifiers can be seen in the table below (courtesy of Dimden):
 
 | Specifier | Meaning                                    |
 |-----------|--------------------------------------------|
@@ -207,7 +211,7 @@ Now if we delete our `post-1.html` file, if someone was to visit that page post-
 | %Y        | Full year                                  |
 | %u        | Unix time in milliseconds                  |
 
-We can use the `list` directive to automatically generate a list of our blog posts. The list directive returns a JSON array encoded with Base64. The decoded output will look something like:
+With the actual posts set up properly can use the `list` directive to automatically generate a list of our blog posts. The list directive returns a JSON array encoded with Base64. The decoded output will look something like:
 
 ```json
 [
