@@ -352,7 +352,7 @@ Now that we've set up the foundations of our new Eleventy site it's time to uplo
 
 If you were hoping to use the Nekoweb terminal for this I'd highly recommend against it, unless you have an awful computer it's going to build slower than you could on your own, node_modules takes up space and only balloons over time if you intend to add new packages and you'll still need to upload your files regardless to be able to build the site.
 
-If you'd like to download the project we created it's hosted on [github.com/moosyu/eleventy-example-project](https://github.com/moosyu/eleventy-example-project).
+If you'd like to download the project we created it's hosted at [github.com/moosyu/eleventy-example-project](https://github.com/moosyu/eleventy-example-project).
 
 ## Bonus stuff (more advanced)
 
