@@ -310,4 +310,10 @@ The `follow` directive is just an alias for `<iframe src="https://nekoweb.org/fr
 
 The error directive (`<!--# error -->`) has no attributes and is mainly designed for password-protected pages (which you can use if you have Neko tier of Nekoweb premium). It seems to display the last server error so you could also make use of it in post forms other than those for password-protected pages.
 
+## Cachebusting with flastmod
+
+If you don't know what caching or cachebusting is I'd advise you to check out [PetraPixel's guide on it](https://petrapixel.neocities.org/coding/cachebusting) but because of the way the `flastmod` directive behaves you can use it to (semi) automatically cachebust. This is good because without using an SSG your options are to manually add `?v=` to the end of every file you'll need to cachebust or to do it automatically with JS which basically forcefully disables cache and is going to pointlessly slow down your site for repeat visitors.
+
+There is fortunately a compromise you can reach Nekoweb's SSI. Firstly we're going to create a file named something along the lines of `cache.txt` in our site's root. We'll need to modify this file every time you want to reset the cache (we don't have to do much, even changing a 1 to a 2 would count as modifying it). Now lets say we want to cachebust some CSS file named `styles.css`. All we need to do is change `<link rel="stylesheet" href="/css/styles.css">` to `<link rel="stylesheet" href="/styles.css?v=<!--# flastmod file='~/cache.txt' fmt='%u' -->">`. Now, every time cache.txt is modified the value after ?v= (which is just the current time in UNIX milliseconds) will be updated and the cachebusting will be completed.
+
 Make sure to check out [the official Nekoweb SSI details page](https://nekoweb.org/ssi). There's also some further details on limitations and notes in that page as well as an example for using the `list` directive to generate a gallery which you may find helpful.
