@@ -1,6 +1,6 @@
 ---
 title: Eleventy
-updated: 2026-01-18
+updated: 2026-03-07
 layout: /main.njk
 description: Creating a site with 11ty
 ---
