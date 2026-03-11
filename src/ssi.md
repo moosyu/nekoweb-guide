@@ -1,6 +1,6 @@
 ---
 title: SSI
-updated: 2026-03-06
+updated: 2026-03-10
 layout: /main.njk
 description: Creating a site with Nekoweb's SSI
 ---
@@ -33,7 +33,7 @@ Currently index.html is the following code:
 <body>
     <nav>
         <a href="/">Home</a>
-        <a href="/pages/about.html">About</a>
+        <a href="/pages/blog-posts.html">Blog posts</a>
     </nav>
     <p>This is for a guide on how to use Nekoweb's SSI</p>
 </body>
@@ -83,14 +83,6 @@ Technically when a layout with a content block is imported but no block is defin
 
 </div>
 
-<div class="note">
-
-#### Note:
-
-If you place a directive attempting resolve a file path inside a block like content that was defined in your layout, its path with be relative to the location of the layout, not the location of the file that layout is being used in. This will be important later.
-
-</div>
-
 ## Includes with the include directive
 
 Includes allow you to further break up components of your site and can be important if you want to maintain consistency between lots of layouts or if you just want reusable combinations of HTML that you use commonly on your site. We'll be creating includes for our meta tags and navbar by taking advantage of the include directive which inserts the code contained in the imported file wherever the directive has been placed.
@@ -100,7 +92,7 @@ Firstly we're going to create a new folder in the root of our site named `includ
 ```html
 <nav>
     <a href="/">Home</a>
-    <a href="/pages/about.html">About</a>
+    <a href="/pages/blog-posts.html">Blog posts</a>
 </nav>
 ```
 
@@ -115,7 +107,7 @@ Now, inside of our `base.html` layout we can add `<!--# include file="../include
 
 For the meta include the process will be much the same. Cut the code in `base.html` from the head and add it to `meta.html`, however as we'll want to be able to change our page title specifically for every page, where the `<title>` tags were we can add `<title><!--# block name="title" -->My awesome site<!--# endblock --></title>`. Now "My awesome site" will be the default title, but if we wish to change it we just have to add `<!--# block name="title" -->Unique title<!--# endblock -->` to a page with `meta.html` imported. As I want this includes to be imported in every page with the `base.html` layout though we'll add `<!--# include file="../includes/meta.html" -->` to the head in base.html.
 
-This is one way to get this functionality but another could be not having title in the meta.html at all and instead having a block inside your `<head>` tags so you can modify it how you want on a page-by-page basis. Whether you should use former or the latter depends on what you're doing, however if you're okay with needing to write `<title>` every time a head block may save you some trouble in the long-run (you could even do both a head block and a title block but personally I see that as a little ugly).
+This is one way to get this functionality but another could be not having title in the meta.html at all and instead having a block inside your `<head>` tags (e.g. `<!-- block name="head-content")`) and you can then add things to your head on a page-by-page basis. Whether you should make a block specifically for the title or a proper block for the head depends on what you're doing. If you're okay with needing to write `<title>` every time you make use of the head block, it save you some trouble in the long-run if you ever need to modify your head in a page-specific manner.
 
 In the end our `base.html` layout should look something like this:
 
@@ -135,7 +127,7 @@ In the end our `base.html` layout should look something like this:
 <div class="note">
 
 #### Note:
-Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you could do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide.
+Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you could do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide. If you're having issues using relative paths for includes you may need to read [this](#note%3A-6) note.
 
 </div>
 
@@ -154,7 +146,7 @@ Displaying your stats this way has three benefits over the traditional JS approa
 <div class="note">
 
 #### Note:
-Displaying these stats this way will have them slightly out of date, depending on how often you update the page it can mean Cloudflare may cache the values for up to five days.
+Displaying these stats this way cause them to be slightly out of date, depending on how often you update the page Cloudflare may cache the values for up to five days.
 
 </div>
 
@@ -167,7 +159,7 @@ To we'll need to create a new folder called `posts` to store our posts. Inside i
 <div class="note">
 
 #### Note:
-Here I've used `../` instead of `./` which may seem odd when `post-1.md` is in the same directory as `post-1.html`. If you remember an earlier note, from within a block the `file` attribute is relative to wherever the block was defined, not where the block being used. Therefore I'm actually navigating from the `/layouts` directory to the `/posts` directory.
+Here I've used `../` instead of `./` which may seem odd when `post-1.md` is in the same directory as `post-1.html`. However this is because the `file` attribute is actually relative to wherever the block was defined, not where the block being used. In this case the `content` block was defined in `/layouts` in the `base.html` layout so I'm actually navigating from the `/layouts` directory to the `/posts` directory. For base HTML tags like `img` that require a file path this behavior doesn't occur. You can avoid this issue by using absolute paths (`~/` or `/`).
 
 </div>
 
@@ -285,6 +277,31 @@ posts.filter(post => !post.isDirectory && post.name.endsWith(".md")).sort((a, b)
 
 For the name displayed this script assumes at the start of every post you're doing `# Post name` (though if you're up for it you can change the match accordingly depending on what you're doing). If you aren't or something went wrong and this value can't be found, the name of the file is used instead. The posts are sorted by date modified, however if you'd prefer date created you can just switch uses of `modified_time` to `created_time`. Be sure to also change the dir path in the list directive if your file with that script in it is placed somewhere differently to mine. If you want to edit how the list item looks you'll need to change the code the backticks on line 8.
 
+The final file structure of our project should look something along the lines of:
+
+```
+├───index.html
+│
+├───includes
+│       meta.html
+│       navbar.html
+│
+├───layouts
+│       base.html
+│
+├───pages
+│       blog-posts.html
+│
+└───posts
+        post-1.md
+        post-2.md
+        post-3.md
+        post-4.md
+        _catchall.html
+```
+
+If you'd like to view or download the project we created it's hosted at [github.com/moosyu/nekoweb-ssi-example-project](https://github.com/moosyu/nekoweb-ssi-example-project).
+
 ## Bonus directives that didn't fit in naturally (fsize, follow and error)
 
 The `fsize` directive displays the size of the specified file and can be used like so: `<!--# fsize file="" -->`. It has three attributes. The only required one is file which is the path to the file you want to display the size of. Like render only seems to display properly if you use an absolute path. The `unit` attribute is optional and defaults to auto and bases its choice on the whether the file's size is closest to a byte, kilobyte, megabyte or gigabyte. You can also manually specify the unit with `unit=""`, b (byte), kb (kilobyte), mb (megabyte), gb (gigabyte) or auto. The final attribute is `format` which is optional and a boolean, if true the number returned has commas added as group separators.
@@ -292,5 +309,11 @@ The `fsize` directive displays the size of the specified file and can be used li
 The `follow` directive is just an alias for `<iframe src="https://nekoweb.org/frame/follow" frameborder="0" width="170" height="28"></iframe>` and should be used accordingly. The button can be styled by using the .follow and .following classes in your elements.css.
 
 The error directive (`<!--# error -->`) has no attributes and is mainly designed for password-protected pages (which you can use if you have Neko tier of Nekoweb premium). It seems to display the last server error so you could also make use of it in post forms other than those for password-protected pages.
+
+## Cachebusting with flastmod
+
+If you don't know what caching or cachebusting is I'd advise you to check out [PetraPixel's guide on it](https://petrapixel.neocities.org/coding/cachebusting) but because of the way the `flastmod` directive behaves you can use it to (semi) automatically cachebust. This is good because without using an SSG your options are to manually add `?v=` to the end of every file you'll need to cachebust or to do it automatically with JS which basically forcefully disables cache and is going to pointlessly slow down your site for repeat visitors.
+
+There is fortunately a compromise you can reach Nekoweb's SSI. Firstly we're going to create a file named something along the lines of `cache.txt` in our site's root. We'll need to modify this file every time you want to reset the cache (we don't have to do much, even changing a 1 to a 2 would count as modifying it). Now lets say we want to cachebust some CSS file named `styles.css`. All we need to do is change `<link rel="stylesheet" href="/css/styles.css">` to `<link rel="stylesheet" href="/styles.css?v=<!--# flastmod file='~/cache.txt' fmt='%u' -->">`. Now, every time `cache.txt` is modified the value after ?v= (which is just the current time in UNIX milliseconds) will be updated and the cachebusting will be completed.
 
 Make sure to check out [the official Nekoweb SSI details page](https://nekoweb.org/ssi). There's also some further details on limitations and notes in that page as well as an example for using the `list` directive to generate a gallery which you may find helpful.

@@ -54,7 +54,6 @@ Next create a new folder inside this folder on your computer and name it `.githu
 The file structure of your repository should look something like:
 
 ```
-.
 ├── .github/
 │   └── workflows/
 │       └── build.yml
@@ -120,7 +119,6 @@ Now, from within the repository's folder (not inside the site folder you'd creat
 The file structure of your repository should look something like:
 
 ```
-.
 ├── .github/
 │   └── workflows/
 │       └── build.yml
