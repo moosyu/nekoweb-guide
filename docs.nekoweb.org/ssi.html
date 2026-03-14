@@ -112,6 +112,7 @@ function myFunction() {
         <li><a href="/ssi">SSI</a></li>
         <li><a href="/eleventy">Eleventy</a></li>
         <li><a href="/deployment">Deployment</a></li>
+        <li><a href="/api">API</a></li>
         <br>
         <li><a href="/credits">Credits</a></li>
     </ul>
@@ -147,10 +148,8 @@ function myFunction() {
 &lt;/html&gt;
 </code></pre>
 <p>From this file we're going to take everything but the content of the page (the text in <code>&lt;p&gt;</code>) and put it into the <code>base.html</code> file. However where we want the main content to be we can add the <code>block</code> directive like so: <code>&lt;!--# block name=&quot;content&quot; --&gt;&lt;!--# endblock --&gt;</code>. The <code>&lt;!--# --&gt;</code> is the syntax for a SSI directive, it is nearly identical to a comment in HTML or XML but with a hashtag after the second dash. Blocks also must be named to be used, we named this one content as thats what it'll be wrapped around but there are no hard and fast naming rules; we could've named it John and as long as we accessed it correctly later it'd still work the same (though it does need some name). You can also create multiple blocks in different places (e.g. one in the body and one in the head). You can think of blocks in the same way you would for something like a div, it needs to be open and closed and can store other elements inside it (but you can't nest other blocks in a block). It is also somewhat unique in that it's the only directive that needs to be closed.</p>
-<div class="note">
-<h4 id="note%3A" tabindex="-1">Note:</h4>
-<p>Content blocks don't append the content inside one block to another when the same name attribute is reused, the previous content is overwritten. We can take advantage of this to add something like <code>&lt;!--# block name=&quot;content&quot; --&gt;&lt;p&gt;Oops! I must've forgotten to add content to this page!&lt;/p&gt;&lt;!--# endblock --&gt;</code> inside our content block so when we import the layout without adding content this warning is displayed.</p>
-</div>
+<div class="note"><h4>Note:</h4><p><p>Content blocks don't append the content inside one block to another when the same name attribute is reused, the previous content is overwritten. We can take advantage of this to add something like <code>&lt;!--# block name=&quot;content&quot; --&gt;&lt;p&gt;Oops! I must've forgotten to add content to this page!&lt;/p&gt;&lt;!--# endblock --&gt;</code> inside our content block so when we import the layout without adding content this warning is displayed.</p>
+</p></div>
 <p>Now lets import our new layout into an HTML file. To make sure it works we can import it into our <code>index.html</code> by deleting everything inside it and adding the layout directive like so <code>&lt;!--# layout file=&quot;./layouts/base.html&quot; --&gt;</code> at the <span class="help" title="The layout directive cannot be inside other directives for it to work but apart from that can be placed anywhere. I just place mine right at the top of my file for clarity.">top of our <code>index.html</code> file</span>, leaving our page empty aside from it. The valid path types are:</p>
 <ul>
 <li>relative to the current working directory (as we're doing here) accessed with <code>./</code> or nothing at all.</li>
@@ -159,10 +158,8 @@ function myFunction() {
 <li>absolute from the root of your site, accessed with <code>~/</code> e.g. <code>&lt;!--# layout file=&quot;~/layouts/base.html&quot; --&gt;</code>.</li>
 </ul>
 <p>In my opinion accessing your files with <code>./</code> or <code>~/</code> are the best and most clear options even if some of these can supersede the others</p>
-<div class="note">
-<h4 id="note%3A-1" tabindex="-1">Note:</h4>
-<p>When a file contains no <code>&lt;!DOCTYPE html&gt;</code> within itself the Nekoweb editor freaks out, however assuming your layout is formatted correctly, the version of the page seen by the users will contain that boilerplate. Therefore this warning can be ignored.</p>
-</div>
+<div class="note"><h4>Note:</h4><p><p>When a file contains no <code>&lt;!DOCTYPE html&gt;</code> within itself the Nekoweb editor freaks out, however assuming your layout is formatted correctly, the version of the page seen by the users will contain that boilerplate. Therefore this warning can be ignored.</p>
+</p></div>
 <p>That aside, if you've followed correctly you should now see whatever was inside your layout on the page you imported it into. If you don't see anything you've likely used the directive incorrectly (probably a misspelling of layout or missing a #). If it says &quot;File not found&quot; then something in your file path is likely incorrect.</p>
 <p>Now, if everything is working and we want to add content to our content block just add the same <code>&lt;!--# block name=&quot;content&quot; --&gt;&lt;!--# endblock --&gt;</code> directive as before (with the content name) and anything inside will be added wherever the content block was defined in your layout. This is what the code of my <code>index.html</code> looks like now:</p>
 <pre><code class="language-html">&lt;!--# layout file=&quot;./layouts/base.html&quot; --&gt;
@@ -171,10 +168,8 @@ function myFunction() {
 	&lt;p&gt;This is for a guide on how to use Nekoweb's SSI&lt;/p&gt;
 &lt;!--# endblock --&gt;
 </code></pre>
-<div class="note">
-<h4 id="note%3A-2" tabindex="-1">Note:</h4>
-<p>Technically when a layout with a content block is imported but no block is defined, all content becomes part of the content block. I've seen a few people opt to not add content blocks to their pages using a layout, however if just for clarity's sake I'd still add one.</p>
-</div>
+<div class="note"><h4>Note:</h4><p><p>Technically when a layout with a content block is imported but no block is defined, all content becomes part of the content block. I've seen a few people opt to not add content blocks to their pages using a layout, however if just for clarity's sake I'd still add one.</p>
+</p></div>
 <h2 id="includes-with-the-include-directive" tabindex="-1">Includes with the include directive</h2>
 <p>Includes allow you to further break up components of your site and can be important if you want to maintain consistency between lots of layouts or if you just want reusable combinations of HTML that you use commonly on your site. We'll be creating includes for our meta tags and navbar by taking advantage of the include directive, which inserts the code contained in the imported file wherever the directive has been placed.</p>
 <p>Firstly we're going to create a new folder in the root of our site named <code>includes</code> and inside of it we'll create <code>meta.html</code> and <code>navbar.html</code>. We'll do <code>navbar.html</code> first as it will be the easiest. Inside of it we can put just the code:</p>
@@ -183,10 +178,8 @@ function myFunction() {
     &lt;a href=&quot;/pages/blog-posts.html&quot;&gt;Blog posts&lt;/a&gt;
 &lt;/nav&gt;
 </code></pre>
-<div class="note">
-<h4 id="note%3A-3" tabindex="-1">Note:</h4>
-<p>As we're be importing this into our base layout, boilerplate isn't needed, just the navbar-specific code.</p>
-</div>
+<div class="note"><h4>Note:</h4><p><p>As we're be importing this into our base layout, boilerplate isn't needed, just the navbar-specific code.</p>
+</p></div>
 <p>Now, inside of our <code>base.html</code> layout we can add <code>&lt;!--# include file=&quot;../includes/navbar.html&quot; --&gt;</code> where our navbar code once was. If all has gone well, pages with the base layout will look unchanged from when the navbar was code placed right in our base layout.</p>
 <p>For the meta include the process will be much the same. Cut the code in <code>base.html</code> from the head and add it to <code>meta.html</code>, however as we'll want to be able to change our page title specifically for every page, where the <code>&lt;title&gt;</code> tags were we can add <code>&lt;title&gt;&lt;!--# block name=&quot;title&quot; --&gt;My awesome site&lt;!--# endblock --&gt;&lt;/title&gt;</code>. Now &quot;My awesome site&quot; will be the default title, but if we wish to change it we just have to add <code>&lt;!--# block name=&quot;title&quot; --&gt;Unique title&lt;!--# endblock --&gt;</code> to a page with <code>meta.html</code> imported. As I want this includes to be imported in every page with the <code>base.html</code> layout though we'll add <code>&lt;!--# include file=&quot;../includes/meta.html&quot; --&gt;</code> to the head in base.html.</p>
 <p>This is one way to get this functionality but another could be not having title in the meta.html at all and instead having a block inside your <code>&lt;head&gt;</code> tags (e.g. <code>&lt;!-- block name=&quot;head-content&quot;)</code>) and you can then add things to your head on a page-by-page basis. Whether you should make a block specifically for the title or a proper block for the head depends on what you're doing. If you're okay with needing to write <code>&lt;title&gt;</code> every time you make use of the head block, it save you some trouble in the long-run if you ever need to modify your head in a page-specific manner.</p>
@@ -202,10 +195,8 @@ function myFunction() {
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<div class="note">
-<h4 id="note%3A-4" tabindex="-1">Note:</h4>
-<p>Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you could do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide. If you're having issues using relative paths for includes you may need to read <a href="#note%3A-6">this</a> note.</p>
-</div>
+<div class="note"><h4>Note:</h4><p><p>Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you could do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide. If you're having issues using relative paths for includes you may need to read <a href="#file-attribute">this</a> note.</p>
+</p></div>
 <h2 id="displaying-site-stats-with-views%2C-updates-and-followers-directives" tabindex="-1">Displaying site stats with views, updates and followers directives</h2>
 <p>If you're somewhat familiar with Nekoweb's ecosystem you're likely aware of <a href="https://maxpixels.moe/resources/nekoweb-stats/">Max's script</a> to display your site stats, however the SSI also have the capabilities to display view count, update count and follower count. By writing HTML like so:</p>
 <pre><code class="language-html">&lt;p&gt;This site has: &lt;!--# views --&gt; views.&lt;/p&gt;
@@ -213,21 +204,15 @@ function myFunction() {
 &lt;p&gt;This site has: &lt;!--# followers --&gt; followers.&lt;/p&gt;
 </code></pre>
 <p>Displaying your stats this way has three benefits over the traditional JS approach. Firstly it's (a tiny bit) faster. Secondly it's easier to deal with especially if you aren't familiar with JS. Lastly and by far most importantly, it allows these stats to be displayed to users who have JS disabled, which is more common than you'd expect amongst people who browse the indie-web so it solves that as an accessability concern.</p>
-<div class="note">
-<h4 id="note%3A-5" tabindex="-1">Note:</h4>
-<p>Displaying these stats this way cause them to be slightly out of date, depending on how often you update the page Cloudflare may cache the values for up to five days.</p>
-</div>
+<div class="note"><h4>Note:</h4><p><p>Displaying site stats this way cause them to be slightly out of date, depending on how often you update the page Cloudflare may cache the values for up to five days. As Nekoweb uses Cloudflare this caching is largely out of your control.</p>
+</p></div>
 <h2 id="making-a-blog-with-render-and-list" tabindex="-1">Making a blog with render and list</h2>
 <p>There are three premium Neko tier directives: render, error and list. Render and list are often used in conjunction to make things like blogs. Render allows you to display the contents of a <span class="help" title="A markup language used for writing and formatting plain text with a simple syntax, making markdown popular for creating things like blog posts">markdown</span> file rendered in HTML without using a <span class="help" title="A tool that reads markdown and converts it to another format (HTML for us)">Markdown parser</span> like <a href="https://github.com/markedjs/marked">marked</a> and list returns a JSON array of files in a folder and some information about them encoded in <span class="help" title="An popular method of encoding data, making transferring it less complex">Base64</span>.</p>
 <p>To start, we'll need to create a new folder called <code>posts</code> to store our posts. Inside it it we can make a file called <code>post-1.md</code> and inside put some random text for testing purposes. Now, inside the <code>posts</code> folder we will create a new file named <code>post-1.html</code> which has our base layout imported, a title and also the directive <code>&lt;!--# render file=&quot;../posts/post-1.md&quot; --&gt;</code> placed inside the <code>content</code> block. If you view this page hopefully the markdown will be converted to HTML and inserted in our content block.</p>
-<div class="note">
-<h4 id="note%3A-6" tabindex="-1">Note:</h4>
-<p>Here I've used <code>../</code> instead of <code>./</code> which may seem odd when <code>post-1.md</code> is in the same directory as <code>post-1.html</code>. However this is because the <code>file</code> attribute is actually relative to wherever the block was defined, not where the block being used. In this case the <code>content</code> block was defined in <code>/layouts</code> in the <code>base.html</code> layout so I'm actually navigating from the <code>/layouts</code> directory to the <code>/posts</code> directory. For base HTML tags like <code>img</code> that require a file path this behavior doesn't occur. You can avoid this issue by using absolute paths (<code>~/</code> or <code>/</code>).</p>
-</div>
-<div class="note">
-<h4 id="note%3A-7" tabindex="-1">Note:</h4>
-<p>If you're unfamiliar with markdown you might want to consider checking out the <a href="https://www.markdownguide.org/cheat-sheet/">cheat sheet</a>. The render directive converts markdown to HTML so a heading made with <code>#</code> is surrounded by <code>&lt;h1&gt;</code>, text made bold using <code>**</code> is surrounded by <code>&lt;strong&gt;</code> etc. From a test the markdown elements that will work are: headings, bold, italic, blockquotes ordered lists, unordered lists, code, horizontal rules, links, images, tables, fenced code blocks, strikethroughs and task lists.</p>
-</div>
+<div class="note" id="file-attribute"><h4>Note:</h4><p><p>Here I've used <code>../</code> instead of <code>./</code> which may seem odd when <code>post-1.md</code> is in the same directory as <code>post-1.html</code>. However this is because the <code>file</code> attribute is actually relative to wherever the block was defined, not where the block being used. In this case the <code>content</code> block was defined in <code>/layouts</code> in the <code>base.html</code> layout so I'm actually navigating from the <code>/layouts</code> directory to the <code>/posts</code> directory. For base HTML tags like <code>img</code> that require a file path this behavior doesn't occur. You can avoid this issue by using absolute paths (<code>~/</code> or <code>/</code>).</p>
+</p></div>
+<div class="note"><h4>Note:</h4><p><p>If you're unfamiliar with markdown you might want to consider checking out the <a href="https://www.markdownguide.org/cheat-sheet/">cheat sheet</a>. The render directive converts markdown to HTML so a heading made with <code>#</code> is surrounded by <code>&lt;h1&gt;</code>, text made bold using <code>**</code> is surrounded by <code>&lt;strong&gt;</code> etc. From a test the markdown elements that will work are: headings, bold, italic, blockquotes ordered lists, unordered lists, code, horizontal rules, links, images, tables, fenced code blocks, strikethroughs and task lists.</p>
+</p></div>
 <p>However as I'm sure you've noticed this method is lame, creating an HTML file for each post? Who has time for that? Fortunately there is a way to solve this issue, <code>_catchall.html</code>, which is available for everyone with cute kitty tier and above as well as the <code>{{filename}}</code> variable which returns the last section of the viewed page's URL with the file extension removed (e.g. in https://sitename.nekoweb.org/posts/post-1.html <code>{{filename}}</code> would return &quot;post-1&quot;). First we're going to create a file named <code>_catchall.html</code> inside our posts folder. This file acts much like not_found.html however it acts before it, so if someone goes to a page inside the posts folder that doesn't exist, _catchall.html will be displayed instead. This can be used to dynamically render markdown files, similarly to how you could in an SSG like Astro or Eleventy. The code we can need to put in <code>_catchall.html</code> is rather simple, like so:</p>
 <pre><code>&lt;!--# layout file=&quot;../layouts/base.html&quot; --&gt;
 &lt;!--# block name=&quot;content&quot; --&gt;

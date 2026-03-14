@@ -343,7 +343,7 @@ pre {
   margin-top: 18px;
 }
 
-.note > p {
+.note > p, .note > h4 {
   margin: 0;
 }
 

@@ -1,4 +1,3 @@
-const nunjucks = require("nunjucks");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttrs = require("markdown-it-attrs");
@@ -70,7 +69,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/css/");
 
   // uses collections api to get all pages on your site, this is used to spit out site map
-  eleventyConfig.addCollection("allPages", function(collectionApi) {
+  eleventyConfig.addCollection("allPages", (collectionApi) => {
     return collectionApi.getAll().filter(page => {
       return !page.url.startsWith("/assets/js/") && !blockedPages.includes(page.url);
     });
@@ -80,6 +79,11 @@ module.exports = function(eleventyConfig) {
   const blockedPages = [
     "/sitemap"
   ];
+
+  eleventyConfig.addPairedShortcode("note", (content, id) => {
+    const idAttr = id ? ` id="${id}"` : "";
+    return `<div class="note"${idAttr}><h4>Note:</h4><p>${md.render(content)}</p></div>`;
+  });
 
   // i like my 11ty being nice to me
   eleventyConfig.on("afterBuild", () => {

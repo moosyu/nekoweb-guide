@@ -42,12 +42,9 @@ Currently index.html is the following code:
 
 From this file we're going to take everything but the content of the page (the text in `<p>`) and put it into the `base.html` file. However where we want the main content to be we can add the `block` directive like so: `<!--# block name="content" --><!--# endblock -->`. The `<!--# -->` is the syntax for a SSI directive, it is nearly identical to a comment in HTML or XML but with a hashtag after the second dash. Blocks also must be named to be used, we named this one content as thats what it'll be wrapped around but there are no hard and fast naming rules; we could've named it John and as long as we accessed it correctly later it'd still work the same (though it does need some name). You can also create multiple blocks in different places (e.g. one in the body and one in the head). You can think of blocks in the same way you would for something like a div, it needs to be open and closed and can store other elements inside it (but you can't nest other blocks in a block). It is also somewhat unique in that it's the only directive that needs to be closed.
 
-<div class="note">
-
-#### Note:
+{% note %}
 Content blocks don't append the content inside one block to another when the same name attribute is reused, the previous content is overwritten. We can take advantage of this to add something like `<!--# block name="content" --><p>Oops! I must've forgotten to add content to this page!</p><!--# endblock -->` inside our content block so when we import the layout without adding content this warning is displayed.
-
-</div>
+{% endnote %}
 
 Now lets import our new layout into an HTML file. To make sure it works we can import it into our `index.html` by deleting everything inside it and adding the layout directive like so `<!--# layout file="./layouts/base.html" -->` at the <span class="help" title="The layout directive cannot be inside other directives for it to work but apart from that can be placed anywhere. I just place mine right at the top of my file for clarity.">top of our `index.html` file</span>, leaving our page empty aside from it. The valid path types are:
 * relative to the current working directory (as we're doing here) accessed with `./` or nothing at all.
@@ -57,12 +54,10 @@ Now lets import our new layout into an HTML file. To make sure it works we can i
 
 In my opinion accessing your files with `./` or `~/` are the best and most clear options even if some of these can supersede the others
 
-<div class="note">
-
-#### Note:
+{% note %}
 When a file contains no `<!DOCTYPE html>` within itself the Nekoweb editor freaks out, however assuming your layout is formatted correctly, the version of the page seen by the users will contain that boilerplate. Therefore this warning can be ignored.
+{% endnote %}
 
-</div>
 
 That aside, if you've followed correctly you should now see whatever was inside your layout on the page you imported it into. If you don't see anything you've likely used the directive incorrectly (probably a misspelling of layout or missing a #). If it says "File not found" then something in your file path is likely incorrect.
 
@@ -76,12 +71,9 @@ Now, if everything is working and we want to add content to our content block ju
 <!--# endblock -->
 ```
 
-<div class="note">
-
-#### Note:
+{% note %}
 Technically when a layout with a content block is imported but no block is defined, all content becomes part of the content block. I've seen a few people opt to not add content blocks to their pages using a layout, however if just for clarity's sake I'd still add one.
-
-</div>
+{% endnote %}
 
 ## Includes with the include directive
 
@@ -96,12 +88,9 @@ Firstly we're going to create a new folder in the root of our site named `includ
 </nav>
 ```
 
-<div class="note">
-
-#### Note:
+{% note %}
 As we're be importing this into our base layout, boilerplate isn't needed, just the navbar-specific code.
-
-</div>
+{% endnote %}
 
 Now, inside of our `base.html` layout we can add `<!--# include file="../includes/navbar.html" -->` where our navbar code once was. If all has gone well, pages with the base layout will look unchanged from when the navbar was code placed right in our base layout.
 
@@ -124,12 +113,9 @@ In the end our `base.html` layout should look something like this:
 </html>
 ```
 
-<div class="note">
-
-#### Note:
-Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you could do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide. If you're having issues using relative paths for includes you may need to read [this](#note%3A-6) note.
-
-</div>
+{% note %}
+Using includes in this way won't be all that helpful unless you end up making multiple layouts, however includes are versatile enough to have a fair few use-cases, these are just examples of what you could do with them. They can also be used anywhere, not just in layouts even though we didn't use them outside layouts during this guide. If you're having issues using relative paths for includes you may need to read [this](#file-attribute) note.
+{% endnote %}
 
 ## Displaying site stats with views, updates and followers directives
 
@@ -143,12 +129,9 @@ If you're somewhat familiar with Nekoweb's ecosystem you're likely aware of [Max
 
 Displaying your stats this way has three benefits over the traditional JS approach. Firstly it's (a tiny bit) faster. Secondly it's easier to deal with especially if you aren't familiar with JS. Lastly and by far most importantly, it allows these stats to be displayed to users who have JS disabled, which is more common than you'd expect amongst people who browse the indie-web so it solves that as an accessability concern.
 
-<div class="note">
-
-#### Note:
-Displaying these stats this way cause them to be slightly out of date, depending on how often you update the page Cloudflare may cache the values for up to five days.
-
-</div>
+{% note %}
+Displaying site stats this way cause them to be slightly out of date, depending on how often you update the page Cloudflare may cache the values for up to five days. As Nekoweb uses Cloudflare this caching is largely out of your control.
+{% endnote %}
 
 ## Making a blog with render and list
 
@@ -156,19 +139,13 @@ There are three premium Neko tier directives: render, error and list. Render and
 
 To start, we'll need to create a new folder called `posts` to store our posts. Inside it it we can make a file called `post-1.md` and inside put some random text for testing purposes. Now, inside the `posts` folder we will create a new file named `post-1.html` which has our base layout imported, a title and also the directive `<!--# render file="../posts/post-1.md" -->` placed inside the `content` block. If you view this page hopefully the markdown will be converted to HTML and inserted in our content block.
 
-<div class="note">
-
-#### Note:
+{% note "file-attribute" %}
 Here I've used `../` instead of `./` which may seem odd when `post-1.md` is in the same directory as `post-1.html`. However this is because the `file` attribute is actually relative to wherever the block was defined, not where the block being used. In this case the `content` block was defined in `/layouts` in the `base.html` layout so I'm actually navigating from the `/layouts` directory to the `/posts` directory. For base HTML tags like `img` that require a file path this behavior doesn't occur. You can avoid this issue by using absolute paths (`~/` or `/`).
+{% endnote %}
 
-</div>
-
-<div class="note">
-
-#### Note:
+{% note %}
 If you're unfamiliar with markdown you might want to consider checking out the [cheat sheet](https://www.markdownguide.org/cheat-sheet/). The render directive converts markdown to HTML so a heading made with `#` is surrounded by `<h1>`, text made bold using `**` is surrounded by `<strong>` etc. From a test the markdown elements that will work are: headings, bold, italic, blockquotes ordered lists, unordered lists, code, horizontal rules, links, images, tables, fenced code blocks, strikethroughs and task lists.
-
-</div>
+{% endnote %}
 
 However as I'm sure you've noticed this method is lame, creating an HTML file for each post? Who has time for that? Fortunately there is a way to solve this issue, `_catchall.html`, which is available for everyone with cute kitty tier and above as well as the `{% raw %}{{filename}}{% endraw %}` variable which returns the last section of the viewed page's URL with the file extension removed (e.g. in https://sitename.nekoweb.org/posts/post-1.html `{% raw %}{{filename}}{% endraw %}` would return "post-1"). First we're going to create a file named `_catchall.html` inside our posts folder. This file acts much like not_found.html however it acts before it, so if someone goes to a page inside the posts folder that doesn't exist, _catchall.html will be displayed instead. This can be used to dynamically render markdown files, similarly to how you could in an SSG like Astro or Eleventy. The code we can need to put in `_catchall.html` is rather simple, like so:
 

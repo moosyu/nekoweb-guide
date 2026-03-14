@@ -201,13 +201,17 @@ layout: base.njk
 ---
 
 <ul>{% raw %}
-    {% for post in collections["posts"] | reverse %}
+    {% for post in collections.posts | reverse %}
         <a href="{{ post.url }}"><li>{{ post.data.title }} - {{ post.date.toLocaleDateString('en-US', { dateStyle: 'medium' }) }}</li></a>
     {% endfor %}
 {% endraw %}</ul>
 ```
 
 This code is using a Nunjucks for loop to go through the posts collection (which is just an glorified array) and displays the data of each list item. The reverse filter is used as Eleventy displays oldest first by default. It's recommended by Eleventy's creator to use a [library instead of Node's built-in toLocaleDateString](https://github.com/11ty/eleventy/issues/1157#issuecomment-629695501), Luxon is actually already a dependency so you'll have it when you install Eleventy, however for simplicity's sake I haven't used it here. If the list is empty, try restarting Eleventy's web server (CTRL + C in your console and run <code>npx @11ty/eleventy --serve</code> again). Eleventy can act weirdly with detecting changes made if collections, changes to the config file or filters are involved.
+
+{% note %}
+I'm using not notation (`.`) to access the collections properties here. This acts nearly identically to if you had used square bracket notation (`[""]`) apart from some [edge-cases](https://stackoverflow.com/a/4968448) you probably won't run into. I personally use it because I find that it's easier to read, to write and more common to see but you could likely safely use either.
+{% endnote %}
 
 ## Pagination
 
@@ -399,8 +403,8 @@ It's fortunately quite easy to get the input content from your blog posts too wi
 {% raw %}
 ```njk
 <ul>
-{% for post in collections["posts"] | reverse %}
-    <a href='{{ post["url"] }}'><li>{{ post["data"]["title"] }} - {{ post["date"].toLocaleDateString('en-US', { dateStyle: 'medium' }) }} - {{ post["content"] | readTime }}</li></a>
+{% for post in collections.posts | reverse %}
+    <a href='{{ post.url }}'><li>{{ post.data.title }} - {{ post.date.toLocaleDateString('en-US', { dateStyle: 'medium' }) }} - {{ post.content | readTime }}</li></a>
 {% endfor %}
 </ul>
 ```
@@ -446,11 +450,9 @@ export default function (eleventyConfig) {
 
 To test our new filter we can go to our blog layout and apply it to our content like {% raw %}<code>{{ content | uwuifyText | safe }}</code>{% endraw %}. If your blog posts have been sufficiently uwuified you completed the process successfully. Now that we know how to use NPM packages we can remove uwuifier, first remove the filter from your layout, then remove the code adding the filter from your .eleventy.js before finally running the command <code>npm r uwuifier</code> to completely remove the package from your project. The "r" is shorthand for remove.
 
-<div class="note">
-
-#### Note:
+{% note %}
 If you uwufied isn't working but you aren't getting errors try adding more words to your blog post, the issue may just be that there isn't enough text for uwuifier to work properly.
-</div>
+{% endnote %}
 
 ## Adding plugins - Syntax highlighting
 
@@ -548,17 +550,13 @@ minifyJS: true
 
 Make sure to add commas between the lines though or else you'll get an error.
 
-<div class="note">
-
-#### Note:
+{% note %}
 This won't minify any imported CSS or JS, only that inside the HTML file itself.
+{% endnote %}
 
-</div>
-
-<div class="note">
-
-#### Note:
-This example was [taken from the Eleventy docs](https://www.11ty.dev/docs/transforms/#minify-html-output).</div>
+{% note %}
+This example was [taken from the Eleventy docs](https://www.11ty.dev/docs/transforms/#minify-html-output).
+{% endnote %}
 
 ## amendLibrary - Markdown footnotes
 

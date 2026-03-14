@@ -112,6 +112,7 @@ function myFunction() {
         <li><a href="/ssi">SSI</a></li>
         <li><a href="/eleventy">Eleventy</a></li>
         <li><a href="/deployment">Deployment</a></li>
+        <li><a href="/api">API</a></li>
         <br>
         <li><a href="/credits">Credits</a></li>
     </ul>
@@ -249,12 +250,14 @@ layout: base.njk
 ---
 
 &lt;ul&gt;
-    {% for post in collections[&quot;posts&quot;] | reverse %}
+    {% for post in collections.posts | reverse %}
         &lt;a href=&quot;{{ post.url }}&quot;&gt;&lt;li&gt;{{ post.data.title }} - {{ post.date.toLocaleDateString('en-US', { dateStyle: 'medium' }) }}&lt;/li&gt;&lt;/a&gt;
     {% endfor %}
 &lt;/ul&gt;
 </code></pre>
 <p>This code is using a Nunjucks for loop to go through the posts collection (which is just an glorified array) and displays the data of each list item. The reverse filter is used as Eleventy displays oldest first by default. It's recommended by Eleventy's creator to use a <a href="https://github.com/11ty/eleventy/issues/1157#issuecomment-629695501">library instead of Node's built-in toLocaleDateString</a>, Luxon is actually already a dependency so you'll have it when you install Eleventy, however for simplicity's sake I haven't used it here. If the list is empty, try restarting Eleventy's web server (CTRL + C in your console and run <code>npx @11ty/eleventy --serve</code> again). Eleventy can act weirdly with detecting changes made if collections, changes to the config file or filters are involved.</p>
+<div class="note"><h4>Note:</h4><p><p>I'm using not notation (<code>.</code>) to access the collections properties here. This acts nearly identically to if you had used square bracket notation (<code>[&quot;&quot;]</code>) apart from some <a href="https://stackoverflow.com/a/4968448">edge-cases</a> you probably won't run into. I personally use it because I find that it's easier to read, to write and more common to see but you could likely safely use either.</p>
+</p></div>
 <h2 id="pagination" tabindex="-1">Pagination</h2>
 <p>This part is on using pagination, collections and permalinks to categorise blog posts into &quot;tags&quot;. Much of it is using code I made years ago while following <a href="https://www.11ty.dev/docs/quicktips/tag-pages/">this guide on the Eleventy website</a>.</p>
 <p>Firstly go your previously made blog post and update the top data section to look somewhat like this:</p>
@@ -388,8 +391,8 @@ permalink: /tags/{{ tag | slugify }}/
 <p>This adds a filter named readTime that is trims input of leading/trailing whitespace which always seems to end up in Eleventy's output and offsets the word count by one or two words. Then the input is split up at every <span class="help" title="A whitespace character is a character that represents white (blank) space. The most common is just a normal space.">whitespace character</span> (or set of whitespace characters) into an array, before getting the length of this array which will come out to be the word count of the input. Then that count is divided by 200 (a low end estimate of average WPM reading speed), rounds up and returns a string with this information. You can edit the returned string to say whatever you'd want, we're using template literals in order to include the wordCount and timeToRead variables inside a string of text cleanly so it can be easily moved around, just make sure the dollar signs stay before the curly brackets or the variables will break.</p>
 <p>It's fortunately quite easy to get the input content from your blog posts too with the built in content aka templateContent data. If you'll remember we also use this in our layouts. Applying this to your blog.njk looks something like like:</p>
 <pre><code class="language-njk">&lt;ul&gt;
-{% for post in collections[&quot;posts&quot;] | reverse %}
-    &lt;a href='{{ post[&quot;url&quot;] }}'&gt;&lt;li&gt;{{ post[&quot;data&quot;][&quot;title&quot;] }} - {{ post[&quot;date&quot;].toLocaleDateString('en-US', { dateStyle: 'medium' }) }} - {{ post[&quot;content&quot;] | readTime }}&lt;/li&gt;&lt;/a&gt;
+{% for post in collections.posts | reverse %}
+    &lt;a href='{{ post.url }}'&gt;&lt;li&gt;{{ post.data.title }} - {{ post.date.toLocaleDateString('en-US', { dateStyle: 'medium' }) }} - {{ post.content | readTime }}&lt;/li&gt;&lt;/a&gt;
 {% endfor %}
 &lt;/ul&gt;
 </code></pre>
@@ -423,10 +426,8 @@ export default function (eleventyConfig) {
 };
 </code></pre>
 <p>To test our new filter we can go to our blog layout and apply it to our content like <code>{{ content | uwuifyText | safe }}</code>. If your blog posts have been sufficiently uwuified you completed the process successfully. Now that we know how to use NPM packages we can remove uwuifier, first remove the filter from your layout, then remove the code adding the filter from your .eleventy.js before finally running the command <code>npm r uwuifier</code> to completely remove the package from your project. The &quot;r&quot; is shorthand for remove.</p>
-<div class="note">
-<h4 id="note%3A" tabindex="-1">Note:</h4>
-<p>If you uwufied isn't working but you aren't getting errors try adding more words to your blog post, the issue may just be that there isn't enough text for uwuifier to work properly.</p>
-</div>
+<div class="note"><h4>Note:</h4><p><p>If you uwufied isn't working but you aren't getting errors try adding more words to your blog post, the issue may just be that there isn't enough text for uwuifier to work properly.</p>
+</p></div>
 <h2 id="adding-plugins---syntax-highlighting" tabindex="-1">Adding plugins - Syntax highlighting</h2>
 <p>Eleventy has an <a href="https://www.11ty.dev/docs/plugins/syntaxhighlight/">official syntax highlighting plugin</a> that allows code you've written in markdown to have it's syntax highlighted without any fuss or client JS. Firstly as this is a separate NPM package we'll need to run the command <code>npm i @11ty/eleventy-plugin-syntaxhighlight</code> inside of our Eleventy project folder to download it. Once installed import the package (I'll be setting its variable's name to <code>syntaxHighlight</code>) before putting <code>eleventyConfig.addPlugin(syntaxHighlight);</code> inside our export function. I'd expect your .eleventy.js file to look something like this if you're still using CommonJS:</p>
 <pre><code class="language-js">const syntaxHighlight = require(&quot;@11ty/eleventy-plugin-syntaxhighlight&quot;);
@@ -503,13 +504,10 @@ minifyCSS: true,
 minifyJS: true
 </code></pre>
 <p>Make sure to add commas between the lines though or else you'll get an error.</p>
-<div class="note">
-<h4 id="note%3A-1" tabindex="-1">Note:</h4>
-<p>This won't minify any imported CSS or JS, only that inside the HTML file itself.</p>
-</div>
-<div class="note">
-<h4 id="note%3A-2" tabindex="-1">Note:</h4>
-<p>This example was <a href="https://www.11ty.dev/docs/transforms/#minify-html-output">taken from the Eleventy docs</a>.</div></p>
+<div class="note"><h4>Note:</h4><p><p>This won't minify any imported CSS or JS, only that inside the HTML file itself.</p>
+</p></div>
+<div class="note"><h4>Note:</h4><p><p>This example was <a href="https://www.11ty.dev/docs/transforms/#minify-html-output">taken from the Eleventy docs</a>.</p>
+</p></div>
 <h2 id="amendlibrary---markdown-footnotes" tabindex="-1">amendLibrary - Markdown footnotes</h2>
 <p>The amendLibrary method can be used to customize a library after it's been created by Eleventy prior to it being used to render your site. It's most often used for adding plugins to markdown-it, Eleventy's default markdown parser. For this example I'll be adding <a href="https://www.npmjs.com/package/markdown-it-footnote">markdown-it-footnote</a> however there any many popular choices. It might be worth your time to also check out <a href="https://www.npmjs.com/package/markdown-it-anchor">markdown-it-anchor</a> and VS Code's fork of <a href="https://www.npmjs.com/package/@vscode/markdown-it-katex">markdown-it-katex</a> as they're both pretty cool. The following instructions work for every markdown-it plugin I've tried so don't worry if you'd like to use another.</p>
 <p>Install markdown-it-footnote by running the command <code>npm i markdown-it-footnote</code> in your terminal to install the package before importing the package to our .eleventy.js file (I'll be setting its variable's name to <code>markdownItFootnote</code>). Inside of the exports section add:</p>
